@@ -318,3 +318,83 @@ code {
   .section--full { grid-template-columns: 1fr; }
   .risks { grid-template-columns: 1fr 1fr; column-gap: 48px; }
 }
+
+/* ---------- Pop-up kode redeem ---------- */
+
+.promo {
+  width: min(380px, calc(100vw - 32px));
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 24px 60px -20px rgb(0 0 0 / .45);
+}
+.promo:focus { outline: none; }
+.promo::backdrop { background: rgb(15 17 21 / .55); }
+
+.promo__inner { display: grid; gap: 14px; padding: 28px 24px 24px; }
+
+.promo__title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.03em;
+}
+
+.promo__text { color: var(--muted); font-size: 1.125rem; }
+
+.promo__code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+  padding: 14px 14px 14px 16px;
+  border-radius: 12px;
+  background: var(--panel);
+}
+.promo__code code {
+  font-size: 1rem;
+  letter-spacing: .06em;
+  overflow-wrap: anywhere;
+}
+
+.promo__copy,
+.promo__close {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background-color .15s ease, color .15s ease;
+}
+.promo__copy {
+  flex: none;
+  padding: 7px 14px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-size: .875rem;
+}
+.promo__copy:hover { background: var(--ink); color: var(--bg); }
+
+.promo__close {
+  margin-top: 6px;
+  padding: 12px 18px;
+  border: 0;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 1rem;
+}
+.promo__close:hover { background: var(--accent); color: #fff; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .promo[open] { animation: promo-in .35s cubic-bezier(.16, 1, .3, 1); }
+  .promo[open]::backdrop { animation: promo-fade .35s ease-out; }
+}
+
+@keyframes promo-in {
+  from { opacity: .001; transform: translateY(12px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes promo-fade { from { opacity: 0; } to { opacity: 1; } }

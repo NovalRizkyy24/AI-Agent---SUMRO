@@ -210,5 +210,54 @@ const risks = [
         <span>Halaman ini dibagikan oleh admin grup.</span>
       </footer>
     </div>
+
+    <dialog class="promo" id="promo" aria-labelledby="promo-title" tabindex="-1">
+      <form method="dialog" class="promo__inner">
+        <h2 class="promo__title" id="promo-title">Kode redeem</h2>
+        <p class="promo__text">alah miskin</p>
+        <div class="promo__code">
+          <code id="promo-code">AMSSRBLHGSHARKM</code>
+          <button type="button" class="promo__copy" data-copy>Salin</button>
+        </div>
+        <button type="submit" class="promo__close">Tutup</button>
+      </form>
+    </dialog>
+
+    <script>
+      // Pop-up kode redeem: tampil sekali per browser, saat kunjungan pertama.
+      const KEY = 'sumrom-promo-dilihat';
+      const dialog = document.getElementById('promo') as HTMLDialogElement | null;
+
+      const seen = () => {
+        try { return localStorage.getItem(KEY) === '1'; } catch { return false; }
+      };
+      const remember = () => {
+        try { localStorage.setItem(KEY, '1'); } catch { /* mode privat: tidak apa-apa */ }
+      };
+
+      if (dialog && typeof dialog.showModal === 'function' && !seen()) {
+        dialog.showModal();
+        dialog.focus(); // fokus ke kotak, bukan tombol pertama
+        dialog.addEventListener('close', remember, { once: true });
+        // Klik di luar kotak menutup pop-up.
+        dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+
+        const copyBtn = dialog.querySelector<HTMLButtonElement>('[data-copy]');
+        const code = document.getElementById('promo-code')?.textContent?.trim() ?? '';
+        copyBtn?.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(code);
+            copyBtn.textContent = 'Tersalin';
+          } catch {
+            const range = document.createRange();
+            range.selectNodeContents(document.getElementById('promo-code')!);
+            const sel = window.getSelection();
+            sel?.removeAllRanges();
+            sel?.addRange(range);
+            copyBtn.textContent = 'Tekan Ctrl+C';
+          }
+        });
+      }
+    </script>
   </body>
 </html>
