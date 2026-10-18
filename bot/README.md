@@ -70,6 +70,7 @@ Pilih mode **bot** (nomor terpisah). Saat ditanya siapa yang boleh mengirim pesa
 ```powershell
 docker compose run --rm hermes config set whatsapp.reply_prefix ""
 docker compose run --rm hermes config set whatsapp.unauthorized_dm_behavior ignore
+docker compose run --rm hermes config set whatsapp.typing_indicator false
 docker compose run --rm hermes plugins enable sumrom
 ```
 
@@ -97,6 +98,7 @@ Hal-hal ini belum bisa dipastikan dari dokumentasi Hermes saja.
 | Cek | Kalau gagal |
 |---|---|
 | Pesan biasa di grup tercatat (`/ringkas` menyebut jumlah pesan yang benar) | Aktifkan `WHATSAPP_ALLOW_ALL_USERS=true` di `.env`, lalu restart. Agen tetap diam karena plugin men-skip semua pesan. |
+| Bot terlihat "mengetik…" setiap ada chat | Pastikan `whatsapp.typing_indicator` bernilai `false`. Kalau bot sedang menyala, jalankan `docker compose exec -u hermes hermes hermes config set whatsapp.typing_indicator false`, lalu restart. |
 | Bot tidak membalas obrolan biasa | Pastikan plugin aktif: `docker compose run --rm hermes plugins list`. |
 | `*tebal*` tampil tebal di grup | Kalau tampil miring, set `SUMROM_TEXT_STYLE=markdown`. |
 | `/idsaya` menampilkan nomor 62..., bukan ID samaran | Kalau yang muncul ID samaran (LID), masukkan ID itu apa adanya ke `SUMROM_ADMINS`. |
@@ -127,6 +129,7 @@ python -m unittest discover -s tests -v
 ## Privasi
 
 - `.env` dan volume `sumrom-hermes-data` berisi API key, sesi WhatsApp, dan isi pesan grup. **Jangan** di-commit atau dibagikan.
+- Saat bot menyala, ubah pengaturan Hermes dengan `docker compose exec`, bukan `docker compose run`, supaya tidak ada bridge kedua.
 - Jangan menjalankan dua bridge WhatsApp dengan sesi yang sama sekaligus. WhatsApp akan memutus sesi, dan nomor bot harus ditautkan ulang.
 - Tidak ada port yang dibuka ke internet.
 - Jangan aktifkan bot di grup yang membahas data pribadi atau rahasia.
