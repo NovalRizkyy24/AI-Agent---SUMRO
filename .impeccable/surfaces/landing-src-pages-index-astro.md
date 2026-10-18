@@ -13,23 +13,24 @@ related_targets: []
 
 ## Audience and job
 - Group member who tapped a link the admin shared in the WhatsApp group; reads on a phone, returns to the group.
-- Must leave knowing: what the bot records, that raw messages are deleted after 7 days, that text goes to an AI model provider, and that any objection means the admin runs /nonaktifkan.
+- Must leave knowing: what the bot records, that text goes to an AI model provider, and that any objection means the admin runs /nonaktifkan.
+- Retention periods are NOT shown on this page (owner decision 2026-10-18).
 - Action: none on the page beyond reading; closing line sends them back to the group to type /ringkas.
 
 ## Content and proof
-- Sequence: board (rules as rows) → CONTOH task rows → inventory of what is stored → commands → risks & objection → close.
-- All sample tasks/summaries labeled CONTOH. No testimonials, numbers, pricing, or public-service claims.
+- Sequence: headline + three facts → CONTOH summary → what is / is not recorded → commands → risks & objection → close.
+- All sample content labeled Contoh. No testimonials, numbers, pricing, or public-service claims.
 
 ## Anti-goals
-- Airport/travel props beyond the board itself; sales tone or "coba gratis"; Docker/Baileys/SQLite talk; mascots, emoji excess; risks below the fold.
+- Sales tone or "coba gratis"; Docker/Baileys/SQLite talk; mascots, emoji excess; risks below the fold; phone-mockup hero; rows of icon cards.
 
 ## Open decisions
 - Hosting URL; group-specific vs generic copy; admin sign-off.
 
 ## Direction contract
-THESIS: The page is a split-flap departure board for the group: every rule the bot follows is a row with a status, and the risks sit on the board in the first screen. It refuses the category default of headline + WhatsApp phone mockup + feature cards.
-OWN-WORLD: Matte flap-black cells with white painted condensed caps on a brushed-steel frame; status lamps in amber (needs attention) and red (late/stopped) only; every display word set letter-by-letter in fixed cells; ruled rows and fixed columns are the whole composition. Body copy in a semi-condensed sans, white on black.
-STORY: A member sees the board, reads what the bot records and when it is erased, sees an example task board, the full inventory, the commands, the risks stated flatly, then goes back to the group.
-FIRST VIEWPORT: Steel-framed board filling the phone screen. Top: "GRUP INI DIRANGKUM BOT" in large flap cells across three lines. Then a name row "SUMROM BOT · 0895-2161-4500". Then four rule rows with status column: PESAN TEKS / DICATAT; PESAN MENTAH / HAPUS 7 HARI; ISI KE MODEL AI / YA (amber); KEBERATAN / ADMIN /NONAKTIFKAN. Signature: on load the headline cascades flap by flap once, then rows flip in sequence; reduced motion shows the final state instantly.
-FORM: split-flap concourse board (dealt challenger, chosen by the user over the assigned grounded direction #7, running-text broadcast). seed:7d4b88660b3c52d6
+THESIS: Modern minimalist (user-pinned, replacing the split-flap world): the page is a short, plain statement set in one confident grotesk, where size and space do all the work and the objection rule is the only coloured thing on the first screen. It refuses the bot-landing default of phone mockup + feature cards + green chat bubbles.
+OWN-WORLD: Cool white ground (dark mode: near-black), ink text, one neutral gray for secondary copy, one vermilion accent reserved for objection and risk emphasis. Schibsted Grotesk for everything, commands in JetBrains Mono. No borders as decoration, no cards; groups separated by whitespace, a single soft gray panel only for the Contoh summary.
+STORY: A member reads one large sentence, three facts, sees what a summary looks like, what is and is not recorded, the commands, the risks stated flatly, then goes back to the group.
+FIRST VIEWPORT: Top bar with SUMROM wordmark left and the bot number right. Headline "Grup ini dirangkum bot." at display scale filling the width. One-line explanation under it. Three facts in a row on desktop, stacked on phone: Dicatat (pesan teks di grup), Dikirim ke model AI (untuk diringkas), Keberatan (admin wajib /nonaktifkan, vermilion). Signature: the headline is revealed once on load by a clip-path wipe line by line; reduced motion shows it at rest.
+FORM: user-pinned "modern minimalist"; no concept roll for this replacement. seed: none (unavailable)
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

@@ -42,7 +42,7 @@ SUMROM tidak sekadar menyingkat obrolan. Isi grup dipilah menjadi keputusan, tug
 
 - Lingkup MVP: menyimpan pesan teks grup yang diaktifkan, ringkasan sesuai perintah dan terjadwal, ekstraksi keputusan/tugas/pertanyaan, `/cari`, `/tugas`, pengaturan per grup oleh admin.
 - Belum termasuk: transkripsi voice note, pengenalan gambar (media ditandai `[media]`), statistik grup, multi-bahasa.
-- Retensi: pesan mentah dihapus otomatis setelah **7 hari**; ringkasan disimpan lebih lama.
+- Retensi: pesan mentah dihapus otomatis setelah **7 hari**; ringkasan disimpan lebih lama. Keputusan pemilik (2026-10-18): masa simpan **tidak ditampilkan** di permukaan publik (landing page, panduan); jangan sebut angka retensi di sana.
 - Bahasa produk: Bahasa Indonesia.
 - Integrasi WhatsApp lewat bridge non-resmi (Baileys) punya risiko nomor dibatasi; WhatsApp Business Cloud API jadi alternatif resmi.
 - Pesan yang masuk saat bot mati tidak bisa diambil kembali.
@@ -66,6 +66,6 @@ SUMROM tidak sekadar menyingkat obrolan. Isi grup dipilah menjadi keputusan, tug
 
 1. **Yang penting dulu.** Keputusan, tugas, dan tenggat lebih penting daripada narasi. Anggota yang ketinggalan harus menemukannya dalam hitungan detik.
 2. **Jangan mengarang.** Bagian kosong dilewati, tugas tanpa tenggat ditulis tanpa tenggat. Akurasi lebih penting daripada kelengkapan.
-3. **Terang-terangan soal privasi.** Bot hanya aktif kalau diaktifkan, anggota diberi tahu, dan pesan mentah dihapus otomatis. Hal ini tidak boleh disembunyikan di halaman mana pun.
+3. **Terang-terangan soal privasi.** Bot hanya aktif kalau diaktifkan, anggota diberi tahu, isi pesan dikirim ke model AI, dan siapa pun boleh menolak. Hal-hal ini tidak boleh disembunyikan di halaman mana pun. Angka masa simpan tidak ditampilkan di permukaan publik (keputusan pemilik 2026-10-18).
 4. **Tegas, bukan kasar.** Suaranya langsung dan frontal tentang apa yang belum beres, tanpa merendahkan orang.
 5. **WhatsApp tetap rumahnya.** Permukaan web melayani bot (memperkenalkan, menjelaskan, mengatur), bukan menggantikan kebiasaan membaca di grup.

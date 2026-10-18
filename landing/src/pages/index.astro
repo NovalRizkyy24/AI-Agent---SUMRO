@@ -1,45 +1,46 @@
 ---
-import '@fontsource/antonio/500.css';
-import '@fontsource/antonio/600.css';
-import '@fontsource/antonio/700.css';
-import '@fontsource/barlow-semi-condensed/400.css';
-import '@fontsource/barlow-semi-condensed/500.css';
-import '../styles/board.css';
-import Cells from '../components/Cells.astro';
-import Flap from '../components/Flap.astro';
+import '@fontsource-variable/schibsted-grotesk';
+import '@fontsource/jetbrains-mono/500.css';
+import '../styles/site.css';
 
-const rules = [
-  { k: 'Pesan teks di grup', s: 'Dicatat', tone: 'white' },
-  { k: 'Pesan mentah', s: 'Hapus 7 hari', tone: 'white' },
-  { k: 'Isi ke model AI', s: 'Ya', tone: 'amber' },
-  { k: 'Keberatan', s: 'Admin /nonaktifkan', tone: 'red' },
-] as const;
+// Pecah teks supaya perintah (/ringkas, /nonaktifkan, ...) tampil sebagai kode.
+const withCmds = (text: string) =>
+  text.split(/(\/[a-z]+(?: 3 jam)?)/).map((part, i) => ({ part, cmd: i % 2 === 1 }));
 
-const decisions = ['Rapat pindah ke Kamis, 19.00', 'Iuran kas naik jadi Rp20.000'];
+const facts = [
+  { label: 'Dicatat', text: 'Pesan teks yang dikirim di grup ini.' },
+  { label: 'Dikirim ke model AI', text: 'Isi pesan, supaya bisa diringkas.' },
+  { label: 'Keberatan?', text: 'Admin wajib mengetik /nonaktifkan.', alert: true },
+];
+
+const decisions = ['Rapat pindah ke Kamis, 19.00.', 'Iuran kas naik jadi Rp20.000.'];
 
 const tasks = [
-  { what: 'Slide bab 2', who: 'Rina', when: 'Kamis', s: 'Buka', tone: 'white' },
-  { what: 'Bayar kas', who: 'Dimas', when: 'Senin', s: 'Lewat', tone: 'red' },
-  { what: 'Booking ruang', who: 'Ayu', when: 'Jumat', s: 'Selesai', tone: 'dim' },
-  { what: 'Rekap absen', who: 'Bayu', when: '—', s: 'Buka', tone: 'white' },
-] as const;
+  { what: 'Slide bab 2', who: 'Rina', when: 'Kamis', s: 'Buka' },
+  { what: 'Bayar kas', who: 'Dimas', when: 'Senin', s: 'Lewat tenggat', tone: 'late' },
+  { what: 'Booking ruang', who: 'Ayu', when: 'Jumat', s: 'Selesai', tone: 'done' },
+  { what: 'Rekap absen', who: 'Bayu', when: null, s: 'Buka' },
+];
 
 const open = ['Siapa yang pegang kunci ruangan?'];
 
-const stored = [
-  { k: 'Nama / nomor pengirim', v: 'Dicatat bersama tiap pesan.', s: '7 hari', tone: 'white' },
-  { k: 'Isi pesan teks', v: 'Bahan ringkasan. Dikirim ke model AI saat diringkas.', s: '7 hari', tone: 'white' },
-  { k: 'Waktu kirim', v: 'Supaya /ringkas 3 jam tahu batasnya.', s: '7 hari', tone: 'white' },
-  { k: 'Gambar & voice note', v: 'Tidak dibaca. Hanya ditandai [media].', s: 'Tidak disimpan', tone: 'dim' },
-  { k: 'Ringkasan', v: 'Hasil /ringkas dan ringkasan terjadwal. Masa simpannya belum diputuskan admin.', s: 'Belum ditetapkan', tone: 'amber' },
-  { k: 'Tugas terdeteksi', v: 'Siapa, apa, kapan, dan statusnya. Masa simpannya belum diputuskan admin.', s: 'Belum ditetapkan', tone: 'amber' },
-] as const;
+const recorded = [
+  { k: 'Nama atau nomor pengirim', v: 'Supaya ringkasan tahu siapa bilang apa.' },
+  { k: 'Isi pesan teks', v: 'Bahan ringkasan.' },
+  { k: 'Waktu kirim', v: 'Supaya /ringkas 3 jam tahu batasnya.' },
+  { k: 'Ringkasan dan tugas', v: 'Hasil /ringkas, termasuk siapa, apa, kapan.' },
+];
+
+const notRecorded = [
+  { k: 'Gambar dan voice note', v: 'Tidak dibaca. Hanya ditandai [media].' },
+  { k: 'Pesan saat bot mati', v: 'Tidak tercatat sama sekali.' },
+];
 
 const commands = [
   { c: '/ringkas', v: 'Semua pesan sejak ringkasan terakhir.' },
   { c: '/ringkas 3 jam', v: 'Hanya rentang waktu yang kamu sebut. Bisa juga "hari ini".' },
   { c: '/tugas', v: 'Daftar tugas yang terdeteksi, dengan status.' },
-  { c: '/cari kata', v: 'Temukan diskusi lama yang masih tersimpan.' },
+  { c: '/cari kata', v: 'Temukan diskusi lama.' },
   { c: '/bantuan', v: 'Semua perintah.' },
 ];
 
@@ -51,221 +52,143 @@ const adminCommands = [
 ];
 
 const risks = [
-  { k: 'Isi pesan dikirim ke penyedia model AI', v: 'Itu satu-satunya cara bot bisa merangkum. Teksnya keluar dari WhatsApp.', tone: 'amber' },
-  { k: 'Jangan bahas data rahasia di sini', v: 'Nomor rekening, data pribadi, hal sensitif: bahas di luar grup ini selama bot aktif.', tone: 'amber' },
-  { k: 'Bot mati, pesan hilang', v: 'Pesan yang masuk saat bot mati tidak tercatat. Ringkasan bisa bolong.', tone: 'amber' },
-  { k: 'Ringkasan bisa keliru', v: 'Untuk keputusan penting, cek pesan aslinya sebelum bertindak.', tone: 'amber' },
-  { k: 'Keberatan? Bilang ke admin', v: 'Satu orang keberatan sudah cukup. Admin wajib mengetik /nonaktifkan.', tone: 'red' },
-] as const;
+  { k: 'Isi pesan keluar dari WhatsApp.', v: 'Teksnya dikirim ke penyedia model AI. Itu satu-satunya cara bot bisa merangkum.' },
+  { k: 'Jangan bahas data rahasia di sini.', v: 'Nomor rekening, data pribadi, hal sensitif: bahas di luar grup ini selama bot aktif.' },
+  { k: 'Bot mati, pesan hilang.', v: 'Pesan yang masuk saat bot mati tidak tercatat. Ringkasan bisa bolong.' },
+  { k: 'Ringkasan bisa keliru.', v: 'Untuk keputusan penting, cek pesan aslinya sebelum bertindak.' },
+];
 ---
 <!doctype html>
 <html lang="id">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111214" />
+    <meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e0f11" media="(prefers-color-scheme: dark)" />
     <title>SUMROM · Grup ini dirangkum bot</title>
-    <meta name="description" content="Grup ini dirangkum SUMROM Bot. Apa yang dicatat, kapan dihapus, dan cara menolaknya." />
+    <meta name="description" content="Grup ini dirangkum SUMROM Bot. Apa yang dicatat, apa risikonya, dan cara menolaknya." />
   </head>
   <body>
-    <main class="page">
-      <div class="frame">
-        <!-- Papan utama -->
-        <section class="board" aria-labelledby="judul">
-          <div id="judul">
-            <Cells as="h1" size="xl" text="Grup ini dirangkum bot" cascade />
-          </div>
-          <div class="ident">
-            <Flap text="SUMROM Bot" />
-            <Flap text="0895-2161-4500" />
-          </div>
-          <table class="rows hero-rules" style="--sw: 8.5em">
-            <caption class="sr-only">Aturan bot di grup ini</caption>
-            <thead>
-              <tr><th scope="col">Apa</th><th scope="col" class="r">Status</th></tr>
-            </thead>
-            <tbody>
-              {rules.map((r) => (
-                <tr class={r.tone === 'amber' ? 'is-amber' : r.tone === 'red' ? 'is-red' : ''}>
-                  <td class="k">{r.k}</td>
-                  <td class="s"><Flap text={r.s} tone={r.tone} flip /></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p class="board__note">
-            Admin grup ini memasang bot perangkum. Halaman ini menjelaskan apa yang dicatat bot, kapan catatannya
-            dihapus, dan cara menolaknya. Baca sampai bawah, lalu balik ke grup.
-          </p>
+    <div class="wrap">
+      <header class="bar">
+        <span class="bar__mark">SUMROM</span>
+        <span class="bar__num">Bot · 0895-2161-4500</span>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="judul">
+          <h1 class="display" id="judul"><span>Grup ini</span> <span>dirangkum bot.</span></h1>
+          <p class="lede">Admin grup ini memasang SUMROM. Ini yang dicatat, risikonya, dan cara menolaknya.</p>
+          <ul class="facts">
+            {facts.map((f) => (
+              <li class:list={['fact', { 'fact--alert': f.alert }]}>
+                <p class="fact__label">{f.label}</p>
+                <p class="fact__text">{withCmds(f.text).map((p) => (p.cmd ? <code>{p.part}</code> : p.part))}</p>
+              </li>
+            ))}
+          </ul>
         </section>
 
-        <!-- Contoh ringkasan -->
-        <section class="board" aria-labelledby="contoh">
-          <div class="board__head">
-            <div id="contoh"><Cells as="h2" size="md" text="Isi satu ringkasan" /></div>
-            <span class="tag tag--amber">Contoh</span>
+        <section class="section" aria-labelledby="contoh">
+          <div>
+            <h2 class="section__title" id="contoh">Isi satu ringkasan</h2>
+            <p class="section__note">
+              Ketik <code>/ringkas</code> dan bot membalas di grup. Bagian yang kosong dilewati, tidak dikarang. Tugas tanpa tenggat ditulis tanpa tenggat.
+            </p>
           </div>
-          <p class="board__note">
-            Ketik <code>/ringkas</code> dan bot membalas di grup. Nama dan isi di bawah ini karangan untuk contoh.
-            Bagian yang tidak ada isinya dilewati, tidak dikarang. Tugas tanpa tenggat ditulis tanpa tenggat.
-          </p>
 
-          <table class="rows">
-            <caption class="sr-only">Contoh keputusan</caption>
-            <thead><tr><th scope="col">Keputusan</th></tr></thead>
-            <tbody>{decisions.map((d) => <tr><td class="k">{d}</td></tr>)}</tbody>
-          </table>
+          <article class="sample" aria-label="Contoh ringkasan">
+            <div class="sample__head">
+              <div>
+                <p class="sample__title">Ringkasan grup</p>
+                <p class="sample__meta">Hari ini, sampai 21.00</p>
+              </div>
+              <span class="pill">Contoh</span>
+            </div>
 
-          <table class="rows" style="--sw: 5.5em">
-            <caption class="sr-only">Contoh tugas</caption>
-            <thead>
-              <tr>
-                <th scope="col">Tugas</th>
-                <th scope="col" class="wide-only">Siapa</th>
-                <th scope="col">Kapan</th>
-                <th scope="col" class="r">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tasks.map((t) => (
-                <tr class={t.tone === 'red' ? 'is-red' : ''}>
-                  <td class="k">{t.what}<span class="v-inline narrow-only">{t.who}</span></td>
-                  <td class="k narrow wide-only">{t.who}</td>
-                  <td class="k narrow">{t.when === '—' ? <span aria-label="tidak disebut">—</span> : t.when}</td>
-                  <td class="s"><Flap text={t.s} tone={t.tone} /></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <div>
+              <h3 class="sub">Keputusan</h3>
+              <ul class="list">{decisions.map((d) => <li>{d}</li>)}</ul>
+            </div>
 
-          <table class="rows">
-            <caption class="sr-only">Contoh pertanyaan yang belum terjawab</caption>
-            <thead><tr><th scope="col">Belum terjawab</th></tr></thead>
-            <tbody>{open.map((q) => <tr><td class="k">{q}</td></tr>)}</tbody>
-          </table>
+            <div>
+              <h3 class="sub">Tugas</h3>
+              <ul class="list tasks">
+                {tasks.map((t) => (
+                  <li>
+                    <span class="task__what">{t.what}</span>
+                    <span class="task__meta">{t.who} · {t.when ?? 'tanpa tenggat'}</span>
+                    <span class:list={['task__status', t.tone && `task__status--${t.tone}`]}>{t.s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="sub">Belum terjawab</h3>
+              <ul class="list">{open.map((q) => <li>{q}</li>)}</ul>
+            </div>
+          </article>
         </section>
 
-        <div class="split">
-          <!-- Yang disimpan -->
-          <section class="board" aria-labelledby="simpan">
-            <div class="board__head">
-              <div id="simpan"><Cells as="h2" size="md" text="Yang disimpan" /></div>
+        <section class="section" aria-labelledby="catat">
+          <h2 class="section__title" id="catat">Yang dicatat, dan yang tidak</h2>
+          <div class="split">
+            <div>
+              <h3 class="sub">Dicatat</h3>
+              <ul class="big-list">
+                {recorded.map((r) => <li><strong>{r.k}</strong><span>{withCmds(r.v).map((p) => (p.cmd ? <code>{p.part}</code> : p.part))}</span></li>)}
+              </ul>
             </div>
-            <table class="rows" style="--sw: 8em">
-              <caption class="sr-only">Data yang disimpan dan masa simpannya</caption>
-              <thead>
-                <tr><th scope="col">Data</th><th scope="col" class="r">Masa simpan</th></tr>
-              </thead>
-              <tbody>
-                {stored.map((d) => (
-                  <tr>
-                    <td class="k">{d.k}<span class="v-inline">{d.v}</span></td>
-                    <td class="s"><Flap text={d.s} tone={d.tone} /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <p class="group-label">Umur pesan mentah</p>
-            <div class="days" role="img" aria-label="Pesan mentah disimpan hari 1 sampai 7, dihapus di hari ke-8">
-              <span>H1</span><span>H2</span><span>H3</span><span>H4</span><span>H5</span><span>H6</span><span>H7</span><span>HAPUS</span>
+            <div>
+              <h3 class="sub">Tidak dicatat</h3>
+              <ul class="big-list big-list--off">
+                {notRecorded.map((r) => <li><strong>{r.k}</strong><span>{r.v}</span></li>)}
+              </ul>
             </div>
-          </section>
-
-          <!-- Perintah -->
-          <section class="board" aria-labelledby="perintah">
-            <div class="board__head">
-              <div id="perintah"><Cells as="h2" size="md" text="Perintah" /></div>
-              <span class="board__meta">Ketik di grup</span>
-            </div>
-            <table class="rows">
-              <caption class="sr-only">Perintah untuk semua anggota</caption>
-              <thead><tr><th scope="col">Semua anggota</th><th scope="col"><span class="sr-only">Hasil</span></th></tr></thead>
-              <tbody>
-                {commands.map((c) => (
-                  <tr><td class="k narrow"><code>{c.c}</code></td><td class="v">{c.v}</td></tr>
-                ))}
-              </tbody>
-            </table>
-            <table class="rows">
-              <caption class="sr-only">Perintah khusus admin</caption>
-              <thead><tr><th scope="col">Khusus admin</th><th scope="col"><span class="sr-only">Hasil</span></th></tr></thead>
-              <tbody>
-                {adminCommands.map((c) => (
-                  <tr><td class="k narrow"><code>{c.c}</code></td><td class="v">{c.v}</td></tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        </div>
-
-        <!-- Risiko -->
-        <section class="board" aria-labelledby="risiko">
-          <div class="board__head">
-            <div id="risiko"><Cells as="h2" size="md" text="Risikonya. Baca ini." /></div>
           </div>
-          <table class="rows">
-            <caption class="sr-only">Risiko memakai bot di grup ini</caption>
-            <tbody>
-              {risks.map((r) => (
-                <tr class={r.tone === 'red' ? 'is-red' : 'is-amber'}>
-                  <td class="k">{r.k}<span class="v-inline">{r.v}</span></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </section>
 
-        <!-- Penutup -->
-        <section class="board close" aria-labelledby="balik">
-          <div id="balik">
-            <Cells as="h2" size="xl" text="Balik ke grup" />
+        <section class="section" aria-labelledby="perintah">
+          <div>
+            <h2 class="section__title" id="perintah">Perintah</h2>
+            <p class="section__note">Ketik langsung di grup.</p>
           </div>
+          <div>
+            <h3 class="sub">Semua anggota</h3>
+            <dl class="cmds">
+              {commands.map((c) => <div class="cmd"><dt><code>{c.c}</code></dt><dd>{c.v}</dd></div>)}
+            </dl>
+            <h3 class="sub">Khusus admin</h3>
+            <dl class="cmds">
+              {adminCommands.map((c) => <div class="cmd"><dt><code>{c.c}</code></dt><dd>{c.v}</dd></div>)}
+            </dl>
+          </div>
+        </section>
+
+        <section class="section section--full" aria-labelledby="risiko">
+          <h2 class="section__title" id="risiko">Risikonya</h2>
+          <div>
+            <ul class="risks">
+              {risks.map((r) => <li><strong>{r.k}</strong><span>{r.v}</span></li>)}
+            </ul>
+            <div class="objection">
+              <p>Satu orang keberatan sudah cukup.</p>
+              <p>Bilang ke admin. Admin wajib mengetik <code>/nonaktifkan</code>, dan bot berhenti mencatat grup ini.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="close" aria-labelledby="balik">
+          <h2 class="display" id="balik">Balik ke grup.</h2>
           <p class="close__line">Ketik <code>/ringkas</code>. Ketinggalan apa pun, keputusan dan tugasnya ada di situ.</p>
         </section>
-      </div>
+      </main>
 
       <footer class="foot">
         <span>SUMROM Bot · 0895-2161-4500</span>
         <span>Halaman ini dibagikan oleh admin grup.</span>
       </footer>
-    </main>
-
-    <script>
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const GLYPHS = 'ABCDEFGHIJKLMNOPRSTUWY0123456789';
-      const pick = () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-
-      function turn(el: HTMLElement, text: string) {
-        el.textContent = text;
-        el.classList.remove('is-turning');
-        void el.offsetWidth;
-        el.classList.add('is-turning');
-      }
-
-      // Kaskade sekali saat dimuat
-      if (!reduce) {
-        const cells = [...document.querySelectorAll<HTMLElement>('[data-cascade] .cell')];
-        cells.forEach((cell, i) => {
-          const target = cell.dataset.char ?? '';
-          const flips = 3 + (i % 4);
-          for (let n = 0; n <= flips; n++) {
-            setTimeout(() => turn(cell, n === flips ? target : pick()), i * 40 + n * 85);
-          }
-        });
-
-        const headlineDone = cells.length * 40 + 7 * 85;
-        document.querySelectorAll<HTMLElement>('[data-flip]').forEach((face, row) => {
-          const target = face.dataset.flip ?? '';
-          const steps = 5;
-          for (let n = 1; n <= steps; n++) {
-            setTimeout(() => {
-              const settled = Math.ceil((target.length * n) / steps);
-              const text = [...target].map((ch, i) => (i < settled || ch === ' ' ? ch : pick())).join('');
-              turn(face, text);
-            }, headlineDone + row * 160 + n * 90);
-          }
-        });
-      }
-    </script>
+    </div>
   </body>
 </html>

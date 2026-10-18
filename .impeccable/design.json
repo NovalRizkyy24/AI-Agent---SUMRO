@@ -3,137 +3,151 @@
   "generatedAt": "2026-10-18T00:00:00Z",
   "title": "Design System: SUMROM",
   "extensions": {
+    "retired": {
+      "world": "Split-flap departure board",
+      "retiredOn": "2026-10-18",
+      "note": "Replaced wholesale by the user-pinned modern minimalist world. Quality-bar rasters in .impeccable/mocks/quality/ are retired references kept for history only."
+    },
     "colorMeta": {
-      "status-amber": { "role": "primary", "displayName": "Concourse Amber", "canonical": "#ffb400", "tonalRamp": ["#3d2a00", "#5c4000", "#805900", "#a87500", "#d69500", "#ffb400", "#ffcf5c", "#ffeab3"] },
-      "status-red": { "role": "secondary", "displayName": "Signal Red", "canonical": "#ff5a4a", "tonalRamp": ["#3d0e09", "#5e1610", "#852018", "#b02c21", "#db3d2f", "#ff5a4a", "#ff9187", "#ffcdc8"] },
-      "steel-frame": { "role": "neutral", "displayName": "Frame Steel", "canonical": "#8e949c", "tonalRamp": ["#22252a", "#383c42", "#50555c", "#6f757e", "#8e949c", "#b6bbc2", "#d3d6da", "#eceef0"] },
-      "steel": { "role": "neutral", "displayName": "Brushed Steel", "canonical": "#b6bbc2", "tonalRamp": ["#22252a", "#383c42", "#50555c", "#6f757e", "#8e949c", "#b6bbc2", "#d3d6da", "#eceef0"] },
-      "steel-dark": { "role": "neutral", "displayName": "Dark Steel", "canonical": "#6f757e", "tonalRamp": ["#22252a", "#383c42", "#50555c", "#6f757e", "#8e949c", "#b6bbc2", "#d3d6da", "#eceef0"] },
-      "ground": { "role": "neutral", "displayName": "Concourse Ground", "canonical": "#1a1c1f", "tonalRamp": ["#0b0c0d", "#111214", "#1a1c1f", "#2c2f33", "#43474d", "#6f757e", "#b6bbc2", "#eceef0"] },
-      "board": { "role": "neutral", "displayName": "Board Black", "canonical": "#111214", "tonalRamp": ["#0b0c0d", "#111214", "#1a1c1f", "#2c2f33", "#43474d", "#6f757e", "#b6bbc2", "#eceef0"] },
-      "flap-top": { "role": "neutral", "displayName": "Flap Top", "canonical": "#1a1a1a", "tonalRamp": ["#000000", "#0e0e0e", "#1a1a1a", "#2e2e2e", "#4a4a4a", "#777777", "#b0b0b0", "#e6e6e6"] },
-      "flap-bottom": { "role": "neutral", "displayName": "Flap Bottom", "canonical": "#0e0e0e", "tonalRamp": ["#000000", "#0e0e0e", "#1a1a1a", "#2e2e2e", "#4a4a4a", "#777777", "#b0b0b0", "#e6e6e6"] },
-      "seam": { "role": "neutral", "displayName": "Hinge Seam", "canonical": "#000000", "tonalRamp": ["#000000", "#0e0e0e", "#1a1a1a", "#2e2e2e", "#4a4a4a", "#777777", "#b0b0b0", "#e6e6e6"] },
-      "rule-line": { "role": "neutral", "displayName": "Rule Line", "canonical": "#2c2f33", "tonalRamp": ["#0b0c0d", "#111214", "#1a1c1f", "#2c2f33", "#43474d", "#6f757e", "#b6bbc2", "#eceef0"] },
-      "type": { "role": "neutral", "displayName": "Painted White", "canonical": "#f2f2f2", "tonalRamp": ["#262626", "#404040", "#5e5e5e", "#808080", "#a3a3a3", "#c4c4c4", "#e0e0e0", "#f2f2f2"] },
-      "type-soft": { "role": "neutral", "displayName": "Soft White", "canonical": "#c4c8cd", "tonalRamp": ["#24262a", "#3b3e43", "#55595f", "#73787e", "#949a9f", "#c4c8cd", "#dcdfe2", "#f0f1f3"] }
+      "vermilion": { "role": "primary", "displayName": "Objection Vermilion", "scheme": "light", "cssVar": "--accent", "canonical": "#d2361a", "tonalRamp": ["#2e0a04", "#4f1309", "#7a1d0e", "#a82814", "#d2361a", "#e8664d", "#f3a596", "#fbdcd5"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "scheme": "light", "cssVar": "--ink", "canonical": "#0f1115", "tonalRamp": ["#0f1115", "#22252b", "#3a3e46", "#555a64", "#767b85", "#9da1a9", "#c8cbd0", "#eef0f2"] },
+      "muted-gray": { "role": "neutral", "displayName": "Muted Gray", "scheme": "light", "cssVar": "--muted", "canonical": "#5b616b", "tonalRamp": ["#1a1c20", "#2c3036", "#41464e", "#5b616b", "#7a8089", "#9ca1a9", "#c3c7cc", "#e9ebee"] },
+      "cool-white": { "role": "neutral", "displayName": "Cool White", "scheme": "light", "cssVar": "--bg", "canonical": "#fbfbfc", "tonalRamp": ["#1d1e21", "#3a3c40", "#5c5f65", "#83868c", "#abaeb3", "#d3d5d9", "#eceef0", "#fbfbfc"] },
+      "panel-gray": { "role": "neutral", "displayName": "Panel Gray", "scheme": "light", "cssVar": "--panel", "canonical": "#f0f1f3", "tonalRamp": ["#1c1d20", "#383a3e", "#595c62", "#7f8288", "#a6a9ae", "#cdd0d4", "#f0f1f3", "#fafafb"] },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "scheme": "light", "cssVar": "--line", "canonical": "#e2e4e8", "tonalRamp": ["#1c1d21", "#37393e", "#575a61", "#7c8087", "#a3a7ad", "#c8cbd0", "#e2e4e8", "#f6f7f8"] },
+      "vermilion-dark": { "role": "primary", "displayName": "Objection Vermilion (dark)", "scheme": "dark", "cssVar": "--accent", "canonical": "#ff6b4f", "tonalRamp": ["#3a0f06", "#63190b", "#922613", "#c9361c", "#ff6b4f", "#ff9078", "#ffbcae", "#ffe5df"] },
+      "ink-dark": { "role": "neutral", "displayName": "Ink (dark)", "scheme": "dark", "cssVar": "--ink", "canonical": "#f2f3f5", "tonalRamp": ["#17191c", "#2f3237", "#4c5058", "#6e737c", "#9499a1", "#bcc0c6", "#dfe1e5", "#f2f3f5"] },
+      "muted-gray-dark": { "role": "neutral", "displayName": "Muted Gray (dark)", "scheme": "dark", "cssVar": "--muted", "canonical": "#a1a7b0", "tonalRamp": ["#1b1d21", "#30343a", "#4a4f57", "#686e77", "#868c95", "#a1a7b0", "#c6cad0", "#e8eaed"] },
+      "near-black": { "role": "neutral", "displayName": "Near-Black", "scheme": "dark", "cssVar": "--bg", "canonical": "#0e0f11", "tonalRamp": ["#0e0f11", "#17191c", "#272a2f", "#41454c", "#62666e", "#8a8e96", "#b9bcc2", "#e6e8eb"] },
+      "panel-gray-dark": { "role": "neutral", "displayName": "Panel Gray (dark)", "scheme": "dark", "cssVar": "--panel", "canonical": "#17191c", "tonalRamp": ["#0e0f11", "#17191c", "#272a2f", "#41454c", "#62666e", "#8a8e96", "#b9bcc2", "#e6e8eb"] },
+      "hairline-dark": { "role": "neutral", "displayName": "Hairline (dark)", "scheme": "dark", "cssVar": "--line", "canonical": "#272a2f", "tonalRamp": ["#0e0f11", "#17191c", "#272a2f", "#41454c", "#62666e", "#8a8e96", "#b9bcc2", "#e6e8eb"] }
+    },
+    "themes": {
+      "light": { "selector": ":root", "--bg": "#fbfbfc", "--ink": "#0f1115", "--muted": "#5b616b", "--panel": "#f0f1f3", "--line": "#e2e4e8", "--accent": "#d2361a", "selection": "#fff on --accent", "themeColorMeta": "#fbfbfc" },
+      "dark": { "selector": "@media (prefers-color-scheme: dark) :root:not([data-theme='light'])", "--bg": "#0e0f11", "--ink": "#f2f3f5", "--muted": "#a1a7b0", "--panel": "#17191c", "--line": "#272a2f", "--accent": "#ff6b4f", "selection": "#0e0f11 on --accent", "themeColorMeta": "#0e0f11" }
     },
     "typographyMeta": {
-      "display-cells-xl": { "displayName": "Display, cells xl", "purpose": "Opening headline and closing line, one letter per flap cell; only the opening headline cascades." },
-      "display-cells-lg": { "displayName": "Display, cells lg", "purpose": "Intermediate cell step between xl and md." },
-      "headline-cells-md": { "displayName": "Headline, cells md", "purpose": "Every panel heading, in per-letter flap cells." },
-      "title-row": { "displayName": "Row key", "purpose": "Left column of every board row; amber or red only when the row carries that status." },
-      "title-flap": { "displayName": "Flap strip", "purpose": "Status values and identity strips." },
-      "body": { "displayName": "Body", "purpose": "Board notes, max 62ch, white on black, tabular numerals." },
-      "body-detail": { "displayName": "Body detail", "purpose": "Soft-white sentence line under a row key." },
-      "label-column": { "displayName": "Column header", "purpose": "Amber tracked caps over table columns and group labels." },
-      "label-tag": { "displayName": "Sample tag", "purpose": "CONTOH marker in a panel head bar." }
+      "display": { "displayName": "Display", "purpose": "Opening headline, one span per line, balanced wrap. Weight 800." },
+      "display-close": { "displayName": "Display (close)", "purpose": "Closing line 'Balik ke grup.'." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "headline-objection": { "displayName": "Objection", "purpose": "The single vermilion objection sentence." },
+      "title-risk": { "displayName": "Risk Title", "purpose": "Risk statements, two columns on desktop." },
+      "title-fact": { "displayName": "Fact", "purpose": "The three first-viewport fact sentences." },
+      "lede": { "displayName": "Lede", "purpose": "One-line explanation under the headline and the closing line; muted, max 52ch." },
+      "item": { "displayName": "Item", "purpose": "Rows inside the sample summary." },
+      "body": { "displayName": "Body", "purpose": "Notes and descriptions; section notes max 46ch." },
+      "label": { "displayName": "Label", "purpose": "Sub-group headings and fact labels; sentence case, no tracking." },
+      "small": { "displayName": "Small", "purpose": "Footer." },
+      "code": { "displayName": "Command", "purpose": "Literal slash commands only. JetBrains Mono 500." }
     },
-    "shadows": [
-      { "name": "board-lift", "value": "0 18px 40px -18px rgb(0 0 0 / .8)", "purpose": "The single steel frame only; panels never carry their own shadow." },
-      { "name": "cell-foot", "value": "inset 0 -2px 0 rgb(0 0 0 / .6), 0 1px 0 rgb(255 255 255 / .04)", "purpose": "Per-letter flap cells." },
-      { "name": "lamp-outline", "value": "inset 0 0 0 1px var(--amber) | var(--red)", "purpose": "Amber and red status flaps and the HAPUS retention tile." }
-    ],
+    "shadows": [],
     "motion": [
-      { "name": "flap-turn", "value": "flap .09s cubic-bezier(.2, .7, .2, 1); from scaleY(.15) translateY(-30%) brightness(1.6) to none", "purpose": "One flip of a cell or strip face." },
-      { "name": "cascade-stagger", "value": "40ms per cell, 85ms per flip, 3-6 random flips per cell", "purpose": "Single load-time headline cascade." },
-      { "name": "status-resolve", "value": "5 steps x 90ms per strip, 160ms per row, after headline settles", "purpose": "Opening-board status flaps resolve left to right." },
-      { "name": "reduced-motion", "value": "animation: none", "purpose": "prefers-reduced-motion shows the settled board instantly." }
+      { "name": "ease-out-expo", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "The only easing; used by the headline wipe and lede rise." },
+      { "name": "headline-wipe", "value": "wipe .9s cubic-bezier(.16, 1, .3, 1) backwards; line 2 delay .1s; clip-path inset(0 0 100% 0) + translateY(.18em) -> inset(0 0 -.2em 0)", "purpose": "One-time reveal of each opening headline line. Behind prefers-reduced-motion: no-preference." },
+      { "name": "lede-rise", "value": "rise .9s .25s cubic-bezier(.16, 1, .3, 1) backwards; opacity .001 + translateY(10px) -> rest", "purpose": "Lede follows the headline. Behind prefers-reduced-motion: no-preference." }
     ],
     "breakpoints": [
-      { "name": "desktop", "value": "900px" }
-    ]
+      { "name": "desktop", "value": "860px" }
+    ],
+    "layout": {
+      "container": "max-width 1120px, centred, inline padding clamp(20px, 5vw, 48px)",
+      "section": "block padding clamp(64px, 9vw, 96px); >=860px grid 4fr / 8fr, column-gap 48px; --full variant single column",
+      "facts": "stacked 28px gap; >=860px three equal columns, 40px gap",
+      "split": "40px gap; >=860px 1fr 1fr, 48px gap",
+      "commands": ">=860px 11rem / 1fr"
+    },
+    "focus": { "value": "outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px", "purpose": "Every focusable element." }
   },
   "components": [
     {
-      "name": "Flap Cell Headline",
-      "kind": "custom",
-      "refersTo": "flap-cell",
-      "description": "Display words set one letter per two-tone flap cell with a hinge seam.",
-      "html": "<h2 class=\"ds-cells\"><span class=\"ds-word\"><span class=\"ds-cell\">B</span><span class=\"ds-cell\">A</span><span class=\"ds-cell\">L</span><span class=\"ds-cell\">I</span><span class=\"ds-cell\">K</span></span><span class=\"ds-word\"><span class=\"ds-cell\">K</span><span class=\"ds-cell\">E</span></span></h2>",
-      "css": ".ds-cells { --cw: 44px; margin: 0; display: flex; flex-wrap: wrap; column-gap: calc(var(--cw) * .45); row-gap: 6px; } .ds-word { display: flex; gap: 3px; } .ds-cell { position: relative; display: grid; place-items: center; width: var(--cw); height: calc(var(--cw) * 1.4); background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); border-radius: 3px; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: calc(var(--cw) * 1.08); line-height: 1; color: #f2f2f2; overflow: hidden; box-shadow: inset 0 -2px 0 rgb(0 0 0 / .6), 0 1px 0 rgb(255 255 255 / .04); } .ds-cell::after { content: ''; position: absolute; inset: calc(50% - 1px) 0 auto; height: 2px; background: #000; box-shadow: 0 1px 0 rgb(255 255 255 / .05); }"
-    },
-    {
-      "name": "Status Flap",
-      "kind": "chip",
-      "refersTo": "flap-strip",
-      "description": "Status value strip: white default, amber attention, red late/objection, dim finished.",
-      "html": "<span class=\"ds-flap\">DICATAT</span> <span class=\"ds-flap ds-flap--amber\">YA</span> <span class=\"ds-flap ds-flap--red\">LEWAT</span> <span class=\"ds-flap ds-flap--dim\">SELESAI</span>",
-      "css": ".ds-flap { display: inline-flex; align-items: center; min-height: 34px; padding: 4px 10px; position: relative; background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); border-radius: 2px; color: #f2f2f2; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 1.0625rem; letter-spacing: .1em; line-height: 1.15; white-space: nowrap; } .ds-flap::after { content: ''; position: absolute; inset: calc(50% - .5px) 0 auto; height: 1px; background: #000; } .ds-flap--amber { color: #ffb400; box-shadow: inset 0 0 0 1px #ffb400; } .ds-flap--red { color: #ff5a4a; box-shadow: inset 0 0 0 1px #ff5a4a; } .ds-flap--dim { color: #c4c8cd; }"
-    },
-    {
-      "name": "Board Rows",
-      "kind": "custom",
-      "refersTo": "board-row-cell",
-      "description": "Ruled rows with amber column headers and a fixed-width right-aligned status column.",
-      "html": "<table class=\"ds-rows\" style=\"--sw: 8.5em\"><thead><tr><th>Apa</th><th class=\"ds-r\">Status</th></tr></thead><tbody><tr><td class=\"ds-k\">Pesan mentah</td><td class=\"ds-s\"><span class=\"ds-st\">HAPUS 7 HARI</span></td></tr><tr class=\"ds-amber\"><td class=\"ds-k\">Isi ke model AI</td><td class=\"ds-s\"><span class=\"ds-st ds-st--amber\">YA</span></td></tr><tr class=\"ds-red\"><td class=\"ds-k\">Keberatan</td><td class=\"ds-s\"><span class=\"ds-st ds-st--red\">ADMIN /NONAKTIFKAN</span></td></tr></tbody></table>",
-      "css": ".ds-rows { width: 100%; border-collapse: separate; border-spacing: 0 4px; background: #111214; color: #f2f2f2; } .ds-rows th { padding: 0 10px 4px; text-align: left; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 500; font-size: .8125rem; letter-spacing: .16em; color: #ffb400; text-transform: uppercase; } .ds-rows th.ds-r { text-align: right; } .ds-rows td { padding: 9px 10px; vertical-align: middle; background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); } .ds-k { font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 1.0625rem; letter-spacing: .08em; text-transform: uppercase; line-height: 1.2; } .ds-rows td.ds-s { width: var(--sw); text-align: right; background: transparent; padding-right: 0; } .ds-st { display: inline-flex; justify-content: center; align-items: center; width: var(--sw); min-height: 34px; padding: 4px 10px; background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); border-radius: 2px; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 1.0625rem; letter-spacing: .1em; } .ds-st--amber { color: #ffb400; box-shadow: inset 0 0 0 1px #ffb400; } .ds-st--red { color: #ff5a4a; box-shadow: inset 0 0 0 1px #ff5a4a; } .ds-amber .ds-k { color: #ffb400; } .ds-red .ds-k { color: #ff5a4a; }"
-    },
-    {
-      "name": "Steel Frame with Panels",
-      "kind": "card",
-      "refersTo": "frame",
-      "description": "One continuous steel frame; panels separated by 6px of exposed steel.",
-      "html": "<div class=\"ds-frame\"><section class=\"ds-board\"><p>Panel satu</p></section><section class=\"ds-board\"><p>Panel dua</p></section></div>",
-      "css": ".ds-frame { display: grid; gap: 6px; padding: 6px; background: #8e949c; box-shadow: 0 18px 40px -18px rgb(0 0 0 / .8); } .ds-board { background: #111214; color: #c4c8cd; padding: clamp(12px, 3vw, 28px); display: grid; gap: 18px; font-family: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif; font-size: 1.0625rem; line-height: 1.45; } .ds-board p { margin: 0; max-width: 62ch; }"
-    },
-    {
-      "name": "Panel Head Bar with Sample Tag",
+      "name": "Top Bar",
       "kind": "nav",
-      "refersTo": "tag-sample",
-      "description": "Heading left, CONTOH tag or soft meta right, 1px rule below.",
-      "html": "<div class=\"ds-head\"><span class=\"ds-title\">Isi satu ringkasan</span><span class=\"ds-tag\">Contoh</span></div>",
-      "css": ".ds-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 0 0 10px; border-bottom: 1px solid #2c2f33; background: #111214; } .ds-title { font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(1.25rem, 3.4vw, 2rem); letter-spacing: .08em; text-transform: uppercase; color: #f2f2f2; } .ds-tag { display: inline-block; padding: 2px 8px; border: 1px solid currentColor; color: #ffb400; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: .875rem; letter-spacing: .14em; text-transform: uppercase; }"
+      "refersTo": "top-bar",
+      "description": "Wordmark left, bot number right. Text only, no links or buttons.",
+      "html": "<header class=\"ds-bar\"><span class=\"ds-bar__mark\">SUMROM</span><span class=\"ds-bar__num\">Bot · 0895-2161-4500</span></header>",
+      "css": ".ds-bar { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 22px 0; font-family: 'Schibsted Grotesk Variable', 'Helvetica Neue', Arial, sans-serif; font-size: .9375rem; color: var(--ink, #0f1115); } .ds-bar__mark { font-weight: 800; letter-spacing: .02em; } .ds-bar__num { color: var(--muted, #5b616b); }"
     },
     {
-      "name": "Inline Link",
-      "kind": "button",
-      "refersTo": "link",
-      "description": "White text with a 2px amber underline; amber on hover; amber focus ring.",
-      "html": "<a class=\"ds-link\" href=\"#\">Baca aturan lengkap</a>",
-      "css": ".ds-link { color: #f2f2f2; font-family: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif; font-size: 1.0625rem; text-decoration: underline; text-decoration-color: #ffb400; text-decoration-thickness: 2px; text-underline-offset: .2em; } .ds-link:hover { color: #ffb400; } .ds-link:focus-visible { outline: 2px solid #ffb400; outline-offset: 3px; }"
-    },
-    {
-      "name": "Retention Strip",
+      "name": "Fact",
       "kind": "custom",
-      "refersTo": "retention-strip",
-      "description": "Day tiles on flap black; the terminal deletion tile spans two columns in red.",
-      "html": "<div class=\"ds-days\"><span>H1</span><span>H2</span><span>H3</span><span>H4</span><span>H5</span><span>H6</span><span>H7</span><span>HAPUS</span></div>",
-      "css": ".ds-days { display: grid; grid-template-columns: repeat(9, 1fr); gap: 3px; } .ds-days span { display: grid; place-items: center; min-height: 44px; background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); color: #f2f2f2; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: .08em; } .ds-days span:last-child { grid-column: span 2; color: #ff5a4a; box-shadow: inset 0 0 0 1px #ff5a4a; }"
+      "refersTo": "fact",
+      "description": "Label over a fact sentence; the alert variant is vermilion.",
+      "html": "<ul class=\"ds-facts\"><li><p class=\"ds-fact__label\">Dicatat</p><p class=\"ds-fact__text\">Pesan teks yang dikirim di grup ini.</p></li><li class=\"ds-fact--alert\"><p class=\"ds-fact__label\">Keberatan?</p><p class=\"ds-fact__text\">Admin wajib mengetik <code>/nonaktifkan</code>.</p></li></ul>",
+      "css": ".ds-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; font-family: 'Schibsted Grotesk Variable', 'Helvetica Neue', Arial, sans-serif; color: var(--ink, #0f1115); } .ds-facts p { margin: 0; } .ds-fact__label { font-size: .9375rem; font-weight: 700; } .ds-fact__text { margin-top: 4px; font-size: clamp(1.25rem, 2.2vw, 1.5rem); font-weight: 500; line-height: 1.3; letter-spacing: -.01em; } .ds-fact--alert p { color: var(--accent, #d2361a); } .ds-facts code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .92em; font-weight: 500; letter-spacing: -.01em; }"
+    },
+    {
+      "name": "Sample Summary Panel",
+      "kind": "card",
+      "refersTo": "summary-panel",
+      "description": "The single filled surface: a soft gray panel holding a labelled sample summary with hairline rows and task statuses.",
+      "html": "<article class=\"ds-sample\"><div class=\"ds-sample__head\"><div><p class=\"ds-sample__title\">Ringkasan grup</p><p class=\"ds-sample__meta\">Hari ini, sampai 21.00</p></div><span class=\"ds-pill\">Contoh</span></div><div><h3 class=\"ds-sub\">Tugas</h3><ul class=\"ds-list\"><li class=\"ds-task\"><span class=\"ds-task__what\">Bayar kas</span><span class=\"ds-task__meta\">Dimas · Senin</span><span class=\"ds-task__status ds-task__status--late\">Lewat tenggat</span></li><li class=\"ds-task\"><span class=\"ds-task__what\">Booking ruang</span><span class=\"ds-task__meta\">Ayu · Jumat</span><span class=\"ds-task__status ds-task__status--done\">Selesai</span></li></ul></div></article>",
+      "css": ".ds-sample { background: var(--panel, #f0f1f3); color: var(--ink, #0f1115); border-radius: 20px; padding: clamp(22px, 4vw, 44px); display: grid; gap: 32px; font-family: 'Schibsted Grotesk Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-sample p, .ds-sample h3 { margin: 0; } .ds-sample__head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; } .ds-sample__title { font-size: 1.25rem; font-weight: 700; letter-spacing: -.01em; } .ds-sample__meta { color: var(--muted, #5b616b); font-size: .9375rem; } .ds-pill { display: inline-block; padding: 3px 12px; border-radius: 999px; border: 1px solid var(--muted, #5b616b); color: var(--muted, #5b616b); font-size: .8125rem; font-weight: 600; letter-spacing: .02em; } .ds-sub { font-size: .9375rem; font-weight: 700; margin-bottom: 12px; } .ds-list { list-style: none; margin: 0; padding: 0; } .ds-list li { padding: 12px 0; border-top: 1px solid var(--line, #e2e4e8); } .ds-list li:last-child { border-bottom: 1px solid var(--line, #e2e4e8); } .ds-task { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; align-items: baseline; } .ds-task__what { font-size: 1.125rem; font-weight: 500; } .ds-task__meta { grid-column: 1; color: var(--muted, #5b616b); font-size: .9375rem; } .ds-task__status { grid-row: 1; grid-column: 2; font-size: .9375rem; font-weight: 600; } .ds-task__status--late { color: var(--accent, #d2361a); } .ds-task__status--done { color: var(--muted, #5b616b); font-weight: 500; }"
+    },
+    {
+      "name": "Contoh Pill",
+      "kind": "chip",
+      "refersTo": "pill-sample",
+      "description": "Static outline label marking sample content.",
+      "html": "<span class=\"ds-pill\">Contoh</span>",
+      "css": ".ds-pill { display: inline-block; padding: 3px 12px; border-radius: 999px; border: 1px solid var(--muted, #5b616b); color: var(--muted, #5b616b); font-family: 'Schibsted Grotesk Variable', 'Helvetica Neue', Arial, sans-serif; font-size: .8125rem; font-weight: 600; letter-spacing: .02em; }"
+    },
+    {
+      "name": "Command Table",
+      "kind": "custom",
+      "refersTo": "command-row",
+      "description": "Definition list of slash commands in mono with muted descriptions, hairline rows.",
+      "html": "<dl class=\"ds-cmds\"><div class=\"ds-cmd\"><dt><code>/ringkas</code></dt><dd>Semua pesan sejak ringkasan terakhir.</dd></div><div class=\"ds-cmd\"><dt><code>/nonaktifkan</code></dt><dd>Bot berhenti mencatat.</dd></div></dl>",
+      "css": ".ds-cmds { display: grid; margin: 0; font-family: 'Schibsted Grotesk Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; line-height: 1.6; color: var(--ink, #0f1115); } .ds-cmd { display: grid; grid-template-columns: 11rem 1fr; gap: 2px 24px; padding: 14px 0; border-top: 1px solid var(--line, #e2e4e8); } .ds-cmd dd { margin: 0; color: var(--muted, #5b616b); } .ds-cmd code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 1.0625rem; font-weight: 500; letter-spacing: -.01em; } .ds-cmd code:focus-visible { outline: 2px solid var(--accent, #d2361a); outline-offset: 4px; border-radius: 2px; }"
+    },
+    {
+      "name": "Objection",
+      "kind": "custom",
+      "refersTo": "objection",
+      "description": "The one vermilion headline-scale sentence, followed by a muted instruction naming /nonaktifkan.",
+      "html": "<div class=\"ds-objection\"><p>Satu orang keberatan sudah cukup.</p><p>Bilang ke admin. Admin wajib mengetik <code>/nonaktifkan</code>, dan bot berhenti mencatat grup ini.</p></div>",
+      "css": ".ds-objection { font-family: 'Schibsted Grotesk Variable', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; } .ds-objection p { margin: 0; } .ds-objection p:first-child { font-size: clamp(1.75rem, 4.4vw, 2.75rem); font-weight: 750; line-height: 1.08; letter-spacing: -.03em; color: var(--accent, #d2361a); text-wrap: balance; } .ds-objection p + p { margin-top: 12px; max-width: 46ch; color: var(--muted, #5b616b); } .ds-objection code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .92em; font-weight: 500; }"
+    },
+    {
+      "name": "Display Headline",
+      "kind": "custom",
+      "refersTo": "display",
+      "description": "Opening headline, one line per span, revealed once by a clip-path wipe.",
+      "html": "<h1 class=\"ds-display\"><span>Grup ini</span> <span>dirangkum bot.</span></h1>",
+      "css": ".ds-display { margin: 0; font-family: 'Schibsted Grotesk Variable', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(3rem, 11.5vw, 8.75rem); font-weight: 800; line-height: .94; letter-spacing: -.04em; color: var(--ink, #0f1115); text-wrap: balance; } .ds-display span { display: block; } @media (prefers-reduced-motion: no-preference) { .ds-display span { animation: ds-wipe .9s cubic-bezier(.16, 1, .3, 1) backwards; } .ds-display span:nth-child(2) { animation-delay: .1s; } } @keyframes ds-wipe { from { clip-path: inset(0 0 100% 0); transform: translateY(.18em); } to { clip-path: inset(0 0 -.2em 0); transform: none; } }"
     }
   ],
   "narrative": {
-    "northStar": "The Concourse Board",
-    "overview": "The system is a split-flap departure board, mounted for one WhatsApp group. Every surface is a steel-framed board; every rule, sample task, stored datum, and command is a ruled row with a fixed status column; every display word is set letter by letter in flap cells. The board refuses the category default of headline, phone mockup, and feature cards: rows and columns are the whole composition.\n\nDensity is high and legible, the way a concourse board is: condensed caps, tabular numerals, tight row spacing (4px), and a status column that holds one fixed width per table so the lamps line up. The palette is mechanical (matte flap-black, brushed steel, painted white) with two lamp colors. Depth comes from the hardware itself: the flap's two-tone halves, the hinge seam, the steel frame showing through the gaps between panels.\n\nMotion is the board's own: one load-time cascade where the headline cells flip through random glyphs and settle, then the status flaps resolve row by row. Reduced motion shows the final board instantly.",
+    "northStar": "The Plain Statement",
+    "overview": "A short, plain statement set in one confident grotesk, where size and space do all the work. The page reads like a notice someone wrote carefully: one very large sentence, a few facts, the evidence, the risks stated flatly. Hierarchy comes from scale jumps and heavy weights (800 display against 400 body), not from ornament, colour fields or containers.\n\nThe ground is a cool white in light mode and a near-black in dark mode, following prefers-color-scheme. Ink and one neutral gray carry all text. A single vermilion is the only colour on the page, and it is spent on objection and risk: the \"Keberatan?\" fact, the late task status, and the objection sentence. Density is low; sections are separated by generous vertical space, and the only filled surface is the soft gray panel that holds the sample summary.\n\nThis world rejects the bot-landing default of phone mockup, feature cards and green chat bubbles. The split-flap departure-board world that preceded it is retired.",
     "keyCharacteristics": [
-      "One continuous steel frame; panels separated by 6px of exposed steel, never by cards or shadows between panels.",
-      "Two-tone flap black (top #1a1a1a / bottom #0e0e0e) with a black center seam on every cell, strip, row, and day tile.",
-      "Display words only in per-letter flap cells (xl / lg / md).",
-      "Amber and red are lamps, not decoration.",
-      "Square, unrounded geometry except the flap hardware (2–3px)."
+      "One grotesk family for everything; mono only for typed commands.",
+      "Display type at up to 8.75rem, weight 800, tight negative tracking.",
+      "Ink, one gray, one vermilion. Nothing else carries colour.",
+      "Whitespace separates groups; one soft gray panel; hairline rules only between list rows.",
+      "Light and dark token sets with identical roles.",
+      "One motion moment: the headline wipes in once on load."
     ],
     "rules": [
-      { "name": "The Lamp Rule", "body": "Red marks only late, stopped, deleted, or objection. Amber marks only what needs the reader's attention, plus the board's header paint and interaction states. Neither ever fills a panel or a background.", "section": "colors" },
-      { "name": "The No Third Lamp Rule", "body": "There is no green, blue, or brand accent. A state that is fine is painted white; a state that is finished or absent is soft white.", "section": "colors" },
-      { "name": "The Cell Rule", "body": "Every display word is set in per-letter flap cells, uppercase, with real text exposed to screen readers. No display headline is ever set as free type.", "section": "typography" },
-      { "name": "The Condensed Pair Rule", "body": "Antonio for anything painted on the board, Barlow Semi Condensed for anything a person reads as a sentence. No third family.", "section": "typography" },
-      { "name": "The One Frame Rule", "body": "There is one frame. Panels never get their own shadow, border, or radius; they are separated only by exposed steel.", "section": "elevation" }
+      { "name": "The One Hot Colour Rule", "body": "Vermilion appears only where the reader's objection or a risk is at stake. If an element is not about refusing, lateness or risk, it is ink or gray.", "section": "colors" },
+      { "name": "The Paired Scheme Rule", "body": "Every colour role exists in both schemes; dark values are swapped on :root under prefers-color-scheme: dark (skipped when data-theme='light'). Never introduce a light-only colour.", "section": "colors" },
+      { "name": "The One Family Rule", "body": "Schibsted Grotesk sets every non-command word. Do not add a second display or serif face.", "section": "typography" },
+      { "name": "The Typed-Only Mono Rule", "body": "Mono marks literal text the reader types into the group (/ringkas, /nonaktifkan). It is not a decorative label style.", "section": "typography" },
+      { "name": "The Flat Page Rule", "body": "No box-shadow, no blur, no layered cards. If something needs separating, use space first, a hairline second, the panel tone only for the sample.", "section": "elevation" }
     ],
     "dos": [
-      "Do put every new section on the same steel frame as another panel, separated by the 6px steel gap.",
-      "Do express content as board rows with a fixed-width, right-aligned status column per table.",
-      "Do set every display word in per-letter flap cells (xl for open/close, md for panel headings).",
-      "Do reserve red for late, stopped, deleted, or objection, and amber for attention and header paint.",
-      "Do label invented example content with the amber CONTOH tag in the head bar.",
-      "Do keep the cascade to a single load-time run and show the settled board under reduced motion."
+      "Do let size and weight carry hierarchy: display 800 against body 400.",
+      "Do keep vermilion for objection, lateness and risk only.",
+      "Do separate groups with section spacing (clamp(64px, 9vw, 96px)) before reaching for a line or a surface.",
+      "Do set every typed command in JetBrains Mono 500.",
+      "Do define every new colour role in both light and dark token sets.",
+      "Do keep the headline wipe as the only entrance motion, and honour reduced motion."
     ],
     "donts": [
-      "Don't add rounded cards, per-panel shadows, or borders between panels; the steel gap is the divider.",
-      "Don't introduce a third lamp color or a brand accent fill.",
-      "Don't set a display headline as free type outside the flap cells.",
-      "Don't place a small label above a heading; panel context goes in the head bar beside the heading.",
-      "Don't add airport or travel props beyond the board itself (planes, gates, tickets).",
-      "Don't animate on scroll or loop the flip; the board flips once."
+      "Don't use shadows, gradients or a second accent colour.",
+      "Don't wrap content in cards; the gray panel is reserved for sample output.",
+      "Don't use mono as a decorative label style or uppercase-tracked eyebrows above headings.",
+      "Don't reintroduce split-flap cells, Antonio, the amber/red board palette, or the retired quality-bar rasters as references.",
+      "Don't use phone mockups, chat bubbles or rows of icon cards."
     ]
   }
 }
