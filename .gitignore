@@ -1,6 +1,7 @@
 # Rahasia dan data bot
 .env
 .env.*
+!.env.example
 .hermes/
 
 # Node / Astro
@@ -21,3 +22,8 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+
+# Bot: data Hermes (API key, sesi WhatsApp, database pesan)
+bot/hermes-data/
+__pycache__/
+*.pyc

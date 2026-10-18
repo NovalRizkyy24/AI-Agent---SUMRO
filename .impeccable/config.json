@@ -54,6 +54,24 @@
         ],
         "createdAt": "2026-10-18T09:06:36.805Z",
         "reason": "Agent: unchosen decision-round sketch, spent hand, predates DESIGN.md, never shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-10-18T13:44:40.651Z",
+        "reason": "Agent: retired split-flap decision-round sketch, predates current DESIGN.md, never shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/challenger-flap.html"
+        ],
+        "createdAt": "2026-10-18T13:44:41.081Z",
+        "reason": "Agent: retired split-flap decision-round sketch, predates current DESIGN.md, never shipped"
       }
     ]
   }

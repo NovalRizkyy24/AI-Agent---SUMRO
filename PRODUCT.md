@@ -11,6 +11,7 @@ web
 ## Stack
 
 Delegated: diserahkan ke rekomendasi Claude.
+- Hosting web: **Vercel** (dipilih pemilik 2026-10-18), Root Directory `landing`.
 - Landing page dan halaman panduan: **Astro** (output statis). Kontennya kebanyakan teks dan jarang berubah, bisa di-host gratis, dan halaman docs bisa ditulis dalam Markdown.
 - Dashboard admin: **belum diputuskan**. Dashboard butuh backend yang membaca database bot (SQLite di server yang sama dengan Hermes), jadi stack-nya dipilih saat dashboard mulai dibangun. Kandidatnya Astro mode SSR atau backend Python yang sebahasa dengan skrip/skill penghubung.
 
@@ -42,7 +43,7 @@ SUMROM tidak sekadar menyingkat obrolan. Isi grup dipilah menjadi keputusan, tug
 
 - Lingkup MVP: menyimpan pesan teks grup yang diaktifkan, ringkasan sesuai perintah dan terjadwal, ekstraksi keputusan/tugas/pertanyaan, `/cari`, `/tugas`, pengaturan per grup oleh admin.
 - Belum termasuk: transkripsi voice note, pengenalan gambar (media ditandai `[media]`), statistik grup, multi-bahasa.
-- Retensi: pesan mentah dihapus otomatis setelah **7 hari**; ringkasan disimpan lebih lama. Keputusan pemilik (2026-10-18): masa simpan **tidak ditampilkan** di permukaan publik (landing page, panduan); jangan sebut angka retensi di sana.
+- Retensi: pesan mentah, ringkasan, dan tugas terdeteksi semuanya dihapus otomatis setelah **7 hari** (dikonfirmasi pemilik 2026-10-18). Keputusan pemilik (2026-10-18): masa simpan **tidak ditampilkan** di permukaan publik (landing page, panduan); jangan sebut angka retensi di sana.
 - Bahasa produk: Bahasa Indonesia.
 - Integrasi WhatsApp lewat bridge non-resmi (Baileys) punya risiko nomor dibatasi; WhatsApp Business Cloud API jadi alternatif resmi.
 - Pesan yang masuk saat bot mati tidak bisa diambil kembali.

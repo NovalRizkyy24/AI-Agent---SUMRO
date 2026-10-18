@@ -1,0 +1,15 @@
+services:
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: sumrom-hermes
+    command: gateway run
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      # Data Hermes (API key, sesi WhatsApp, config.yaml, database SUMROM).
+      # Jangan di-commit, jangan dibagikan.
+      - ./hermes-data:/opt/data
+      # Plugin SUMROM dari repo ini, dibaca langsung oleh gateway.
+      - ./plugins/sumrom:/opt/data/plugins/sumrom:ro
+    # Tidak ada port yang dibuka ke luar: bot cukup terhubung keluar ke WhatsApp
+    # dan penyedia model AI.

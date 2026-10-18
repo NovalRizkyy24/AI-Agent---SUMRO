@@ -18,8 +18,9 @@ Proyek ini masih tahap awal.
 | Bagian | Status |
 |---|---|
 | Rancangan aplikasi | Versi 0.1, lihat [SUMROM-rancangan-aplikasi.md](SUMROM-rancangan-aplikasi.md) |
-| Landing page | Selesai, di [landing/](landing/) |
-| Bot (Hermes + WhatsApp) | Belum dibangun (tahap 1 MVP) |
+| Landing page | Selesai, di [landing/](landing/), siap di-deploy ke Vercel |
+| Format pesan WhatsApp | Selesai, lihat [docs/format-pesan.md](docs/format-pesan.md) |
+| Bot (plugin Hermes) | Kode dan tes selesai di [bot/](bot/); belum diuji di WhatsApp sungguhan |
 | Halaman panduan, dashboard admin | Direncanakan |
 
 ## Isi repository
@@ -30,6 +31,8 @@ Proyek ini masih tahap awal.
 ├── PRODUCT.md                     ringkasan produk: pengguna, tujuan, batasan, prinsip
 ├── DESIGN.md                      sistem desain visual (modern minimalis)
 ├── landing/                       landing page (Astro, statis)
+├── bot/                           bot WhatsApp: plugin Hermes + Docker Compose
+├── docs/format-pesan.md           format setiap pesan bot
 └── .impeccable/                   konfigurasi dan catatan desain
 ```
 
@@ -47,9 +50,19 @@ npm run build     # hasil statis ke landing/dist
 npm run preview   # lihat hasil build
 ```
 
-Isi folder `landing/dist` bisa di-host di layanan statis mana pun, misalnya Netlify, Vercel, Cloudflare Pages, atau GitHub Pages.
+### Deploy ke Vercel
 
-## Perintah bot (rencana)
+1. Buka [vercel.com/new](https://vercel.com/new) dan impor repository ini dari GitHub.
+2. Isi **Root Directory** dengan `landing`. Framework terdeteksi otomatis sebagai Astro.
+3. Klik **Deploy**.
+
+Alamat situs untuk pratinjau link WhatsApp (`og:image`, canonical) diambil otomatis dari domain produksi Vercel. Setelah deploy, salin link-nya ke `SUMROM_LANDING_URL` di `bot/.env`.
+
+## Bot WhatsApp
+
+Setup, uji coba, dan perintah operasional ada di [bot/README.md](bot/README.md).
+
+## Perintah bot
 
 | Perintah | Fungsi | Hak akses |
 |---|---|---|
@@ -61,6 +74,8 @@ Isi folder `landing/dist` bisa di-host di layanan statis mana pun, misalnya Netl
 | `/gaya singkat` / `/gaya detail` | Atur panjang ringkasan | Admin |
 | `/jadwal 21:00` | Atur ringkasan otomatis | Admin |
 | `/aktifkan` / `/nonaktifkan` | Aktifkan atau matikan bot di grup | Admin |
+| `/jadwal mati` | Matikan ringkasan otomatis | Admin |
+| `/idsaya` | Tampilkan ID WhatsApp pengirim (untuk mendaftarkan admin) | Semua anggota |
 
 ## Privasi
 

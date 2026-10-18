@@ -3,6 +3,10 @@ import '@fontsource-variable/schibsted-grotesk';
 import '@fontsource/jetbrains-mono/500.css';
 import '../styles/site.css';
 
+const description = 'Grup ini dirangkum SUMROM Bot. Apa yang dicatat, apa risikonya, dan cara menolaknya.';
+const pageUrl = new URL('/', Astro.site).href;
+const ogImage = new URL('/og.png', Astro.site).href;
+
 // Pecah teks supaya perintah (/ringkas, /nonaktifkan, ...) tampil sebagai kode.
 const withCmds = (text: string) =>
   text.split(/(\/[a-z]+(?: 3 jam)?)/).map((part, i) => ({ part, cmd: i % 2 === 1 }));
@@ -66,7 +70,23 @@ const risks = [
     <meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0e0f11" media="(prefers-color-scheme: dark)" />
     <title>SUMROM · Grup ini dirangkum bot</title>
-    <meta name="description" content="Grup ini dirangkum SUMROM Bot. Apa yang dicatat, apa risikonya, dan cara menolaknya." />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Pratinjau link saat dibagikan di WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="SUMROM" />
+    <meta property="og:title" content="Grup ini dirangkum bot." />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Grup ini dirangkum bot. Keberatan? Admin wajib mengetik /nonaktifkan." />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
     <div class="wrap">
