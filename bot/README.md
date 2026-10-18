@@ -16,7 +16,7 @@ Pesan grup ──► bridge WhatsApp Hermes ──► plugin SUMROM (hook pre_ga
 - Ringkasan dibuat lewat `ctx.llm`, yaitu model dan API key yang disetel di Hermes. Model hanya mengembalikan data JSON (inti, keputusan, tugas, belum terjawab), dan teks pesannya disusun oleh kode.
 - Pesan baru ditandai "sudah diringkas" **setelah** ringkasan terkirim. Kalau model gagal, tidak ada yang hilang.
 - Pesan, ringkasan, dan tugas yang lebih tua dari 7 hari dihapus otomatis. Pembersihan berjalan setiap jam dan setiap kali ada `/ringkas`.
-- Database ada di `hermes-data/sumrom/sumrom.db`.
+- Semua data Hermes (API key, sesi WhatsApp, `config.yaml`, database SUMROM di `/opt/data/sumrom/sumrom.db`) disimpan di Docker volume `sumrom-hermes-data`, bukan folder Windows. Di Docker Desktop, folder Windows terlalu lambat untuk bridge WhatsApp, sehingga bridge gagal start dalam 15 detik, dan tidak aman untuk SQLite.
 
 ```
 bot/
@@ -63,7 +63,7 @@ docker compose run --rm hermes setup
 docker compose run --rm hermes whatsapp
 ```
 
-Pilih mode **bot** (nomor terpisah). Lalu di HP nomor bot, buka WhatsApp → Perangkat tertaut → Tautkan perangkat, dan scan QR yang muncul.
+Pilih mode **bot** (nomor terpisah). Saat ditanya siapa yang boleh mengirim pesan ke bot, **kosongkan**. Jangan isi nomor bot. Lalu di HP nomor bot, buka WhatsApp → Perangkat tertaut → Tautkan perangkat, dan scan QR yang muncul.
 
 **3. Atur Hermes dan aktifkan plugin:**
 
@@ -110,9 +110,10 @@ Hal-hal ini belum bisa dipastikan dari dokumentasi Hermes saja.
 | Restart (misalnya setelah mengubah `.env` atau plugin) | `docker compose restart hermes` |
 | Berhenti | `docker compose down` |
 | Update Hermes | `docker compose pull` lalu `docker compose up -d` |
-| Pairing ulang WhatsApp | ulangi langkah 2, lalu restart |
+| Pairing ulang WhatsApp | `docker compose down`, ulangi langkah 2, lalu `docker compose up -d` |
+| Ubah `.env` (misalnya `SUMROM_ADMINS`) | `docker compose up -d --force-recreate` (restart biasa tidak membaca ulang `.env`) |
 
-Untuk operasi 24 jam, pindahkan ke VPS: salin folder `bot/` beserta `.env` dan `hermes-data/`.
+Untuk operasi 24 jam, pindahkan ke VPS: salin folder `bot/` beserta `.env`, lalu pindahkan isi volume `sumrom-hermes-data` (misalnya ekspor dengan `docker run --rm -v sumrom-hermes-data:/d -v ${PWD}:/b alpine tar czf /b/hermes-data.tgz -C /d .`).
 
 ## Menjalankan tes
 
@@ -125,6 +126,7 @@ python -m unittest discover -s tests -v
 
 ## Privasi
 
-- `.env` dan `hermes-data/` berisi API key, sesi WhatsApp, dan isi pesan grup. Keduanya sudah masuk `.gitignore`. **Jangan** di-commit atau dibagikan.
+- `.env` dan volume `sumrom-hermes-data` berisi API key, sesi WhatsApp, dan isi pesan grup. **Jangan** di-commit atau dibagikan.
+- Jangan menjalankan dua bridge WhatsApp dengan sesi yang sama sekaligus. WhatsApp akan memutus sesi, dan nomor bot harus ditautkan ulang.
 - Tidak ada port yang dibuka ke internet.
 - Jangan aktifkan bot di grup yang membahas data pribadi atau rahasia.

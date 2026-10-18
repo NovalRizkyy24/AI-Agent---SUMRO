@@ -6,10 +6,16 @@ services:
     restart: unless-stopped
     env_file: .env
     volumes:
-      # Data Hermes (API key, sesi WhatsApp, config.yaml, database SUMROM).
-      # Jangan di-commit, jangan dibagikan.
-      - ./hermes-data:/opt/data
+      # Data Hermes (API key, sesi WhatsApp, config.yaml, database SUMROM)
+      # disimpan di Docker volume, bukan folder Windows: di Docker Desktop,
+      # folder Windows terlalu lambat untuk bridge WhatsApp (gagal start dalam
+      # 15 detik) dan tidak aman untuk SQLite.
+      - hermes-data:/opt/data
       # Plugin SUMROM dari repo ini, dibaca langsung oleh gateway.
       - ./plugins/sumrom:/opt/data/plugins/sumrom:ro
     # Tidak ada port yang dibuka ke luar: bot cukup terhubung keluar ke WhatsApp
     # dan penyedia model AI.
+
+volumes:
+  hermes-data:
+    name: sumrom-hermes-data
