@@ -99,7 +99,9 @@ class Store:
         path.parent.mkdir(parents=True, exist_ok=True)
         self._conn = sqlite3.connect(str(path), check_same_thread=False)
         self._conn.row_factory = sqlite3.Row
-        self._conn.execute("PRAGMA journal_mode=WAL")
+        # Bukan WAL: folder data biasanya bind mount Docker Desktop (virtiofs/9p),
+        # tempat shared memory WAL tidak koheren dan bisa merusak database.
+        self._conn.execute("PRAGMA journal_mode=DELETE")
         self._conn.execute("PRAGMA foreign_keys=ON")
         self._lock = threading.Lock()
         with self._lock:

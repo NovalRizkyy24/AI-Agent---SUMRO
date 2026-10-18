@@ -23,6 +23,8 @@ import asyncio
 import logging
 import os
 import re
+import time
+from collections import OrderedDict
 from datetime import timedelta
 from pathlib import Path
 
@@ -77,6 +79,7 @@ class Sumrom:
         self.gateway = None
         self.scheduler: asyncio.Task | None = None
         self.locks: dict[str, asyncio.Lock] = {}
+        self.seen: OrderedDict[tuple, None] = OrderedDict()
         log.info("SUMROM siap, database: %s", _db_path())
         if not _admins():
             log.warning("SUMROM_ADMINS kosong: tidak ada yang bisa /aktifkan. Pakai /idsaya untuk melihat ID.")
@@ -127,6 +130,8 @@ class Sumrom:
             return {"action": "skip", "reason": "sumrom-bot-sendiri"}
 
         text = (getattr(event, "text", None) or "").strip()
+        if self._already_seen(event, source, text):
+            return {"action": "skip", "reason": "sumrom-ganda"}
         command, arg = self._parse_command(text)
 
         if source.chat_type != "group":
@@ -159,6 +164,20 @@ class Sumrom:
                 sent_at=now,
             )
         return {"action": "skip", "reason": "sumrom-dicatat" if group.aktif else "sumrom-nonaktif"}
+
+    def _already_seen(self, event, source, text: str) -> bool:
+        """True kalau pesan yang sama sudah diproses (hook terdaftar ganda)."""
+        message_id = getattr(event, "message_id", None) or getattr(source, "message_id", None)
+        if message_id:
+            key = (source.chat_id, str(message_id))
+        else:
+            key = (source.chat_id, source.user_id, text, int(time.monotonic() // 3))
+        if key in self.seen:
+            return True
+        self.seen[key] = None
+        while len(self.seen) > 1000:
+            self.seen.popitem(last=False)
+        return False
 
     @staticmethod
     def _parse_command(text: str) -> tuple[str | None, str]:
@@ -320,6 +339,13 @@ class _ScheduledSource:
         self.chat_name = chat_name
 
 
+_INSTANCE: Sumrom | None = None
+
+
 def register(ctx):
-    plugin = Sumrom(ctx)
-    ctx.register_hook("pre_gateway_dispatch", plugin.on_dispatch)
+    # Hermes bisa memanggil register() lebih dari sekali dalam satu proses.
+    # Pakai satu instance bersama; on_dispatch sendiri menolak pesan ganda.
+    global _INSTANCE
+    if _INSTANCE is None:
+        _INSTANCE = Sumrom(ctx)
+    ctx.register_hook("pre_gateway_dispatch", _INSTANCE.on_dispatch)

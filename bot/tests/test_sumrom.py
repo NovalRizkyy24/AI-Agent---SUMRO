@@ -65,7 +65,11 @@ SAMPLE = {
 }
 
 
+_ids = iter(range(1, 10**6))
+
+
 def event(text, user=MEMBER, name="Rina", chat_type="group", message_id=None):
+    message_id = message_id or f"auto{next(_ids)}"
     source = SimpleNamespace(
         platform=Platform.WHATSAPP, chat_id=GROUP if chat_type == "group" else user,
         chat_name="Kelas 3B", chat_type=chat_type, user_id=user, user_id_alt=None,
@@ -182,6 +186,29 @@ class PluginTest(unittest.IsolatedAsyncioTestCase):
         await self.say("/bantuan", chat_type="dm")
         self.assertIn("/ringkas", self.last())
         self.assertIn("https://sumrom.vercel.app", self.last())
+
+    async def test_duplicate_delivery_is_processed_once(self):
+        await self.say("/aktifkan", user=ADMIN)
+        ev = event("/bantuan", message_id="dup")
+        await self.plugin.on_dispatch(ev, gateway=self.gateway)
+        result = await self.plugin.on_dispatch(ev, gateway=self.gateway)
+        self.assertEqual(result["reason"], "sumrom-ganda")
+        self.assertEqual(sum("SUMROM · perintah" in s for _, s in self.adapter.sent), 1)
+
+    async def test_register_twice_shares_one_instance(self):
+        import sumrom
+        hooks = []
+        ctx = SimpleNamespace(llm=self.llm, register_hook=lambda name, fn: hooks.append(fn))
+        old = sumrom._INSTANCE
+        try:
+            sumrom._INSTANCE = None
+            sumrom.register(ctx)
+            sumrom.register(ctx)
+            self.assertEqual(len({id(h.__self__) for h in hooks}), 1)
+        finally:
+            if sumrom._INSTANCE is not None:
+                sumrom._INSTANCE.store._conn.close()
+            sumrom._INSTANCE = old
 
     async def test_purge_removes_old_data(self):
         await self.say("/aktifkan", user=ADMIN)
