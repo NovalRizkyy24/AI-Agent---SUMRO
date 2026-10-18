@@ -1,0 +1,60 @@
+{
+  "hook": {
+    "enabled": true,
+    "limits": {
+      "maxFindings": 5,
+      "maxChars": 8000
+    }
+  },
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-10-18T09:01:36.145Z",
+        "reason": "Agent: unchosen decision-round sketch, spent hand, never shipped"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-10-18T09:01:36.585Z",
+        "reason": "Agent: unchosen decision-round sketch, spent hand, never shipped"
+      },
+      {
+        "rule": "ai-color-palette",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-10-18T09:01:37.027Z",
+        "reason": "Agent: unchosen decision-round sketch, spent hand, never shipped"
+      },
+      {
+        "rule": "overused-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-10-18T09:01:37.443Z",
+        "reason": "Agent: unchosen decision-round sketch, spent hand, never shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-10-18T09:06:36.805Z",
+        "reason": "Agent: unchosen decision-round sketch, spent hand, predates DESIGN.md, never shipped"
+      }
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-18T00:00:00Z",
+  "title": "Design System: SUMROM",
+  "extensions": {
+    "colorMeta": {
+      "status-amber": { "role": "primary", "displayName": "Concourse Amber", "canonical": "#ffb400", "tonalRamp": ["#3d2a00", "#5c4000", "#805900", "#a87500", "#d69500", "#ffb400", "#ffcf5c", "#ffeab3"] },
+      "status-red": { "role": "secondary", "displayName": "Signal Red", "canonical": "#ff5a4a", "tonalRamp": ["#3d0e09", "#5e1610", "#852018", "#b02c21", "#db3d2f", "#ff5a4a", "#ff9187", "#ffcdc8"] },
+      "steel-frame": { "role": "neutral", "displayName": "Frame Steel", "canonical": "#8e949c", "tonalRamp": ["#22252a", "#383c42", "#50555c", "#6f757e", "#8e949c", "#b6bbc2", "#d3d6da", "#eceef0"] },
+      "steel": { "role": "neutral", "displayName": "Brushed Steel", "canonical": "#b6bbc2", "tonalRamp": ["#22252a", "#383c42", "#50555c", "#6f757e", "#8e949c", "#b6bbc2", "#d3d6da", "#eceef0"] },
+      "steel-dark": { "role": "neutral", "displayName": "Dark Steel", "canonical": "#6f757e", "tonalRamp": ["#22252a", "#383c42", "#50555c", "#6f757e", "#8e949c", "#b6bbc2", "#d3d6da", "#eceef0"] },
+      "ground": { "role": "neutral", "displayName": "Concourse Ground", "canonical": "#1a1c1f", "tonalRamp": ["#0b0c0d", "#111214", "#1a1c1f", "#2c2f33", "#43474d", "#6f757e", "#b6bbc2", "#eceef0"] },
+      "board": { "role": "neutral", "displayName": "Board Black", "canonical": "#111214", "tonalRamp": ["#0b0c0d", "#111214", "#1a1c1f", "#2c2f33", "#43474d", "#6f757e", "#b6bbc2", "#eceef0"] },
+      "flap-top": { "role": "neutral", "displayName": "Flap Top", "canonical": "#1a1a1a", "tonalRamp": ["#000000", "#0e0e0e", "#1a1a1a", "#2e2e2e", "#4a4a4a", "#777777", "#b0b0b0", "#e6e6e6"] },
+      "flap-bottom": { "role": "neutral", "displayName": "Flap Bottom", "canonical": "#0e0e0e", "tonalRamp": ["#000000", "#0e0e0e", "#1a1a1a", "#2e2e2e", "#4a4a4a", "#777777", "#b0b0b0", "#e6e6e6"] },
+      "seam": { "role": "neutral", "displayName": "Hinge Seam", "canonical": "#000000", "tonalRamp": ["#000000", "#0e0e0e", "#1a1a1a", "#2e2e2e", "#4a4a4a", "#777777", "#b0b0b0", "#e6e6e6"] },
+      "rule-line": { "role": "neutral", "displayName": "Rule Line", "canonical": "#2c2f33", "tonalRamp": ["#0b0c0d", "#111214", "#1a1c1f", "#2c2f33", "#43474d", "#6f757e", "#b6bbc2", "#eceef0"] },
+      "type": { "role": "neutral", "displayName": "Painted White", "canonical": "#f2f2f2", "tonalRamp": ["#262626", "#404040", "#5e5e5e", "#808080", "#a3a3a3", "#c4c4c4", "#e0e0e0", "#f2f2f2"] },
+      "type-soft": { "role": "neutral", "displayName": "Soft White", "canonical": "#c4c8cd", "tonalRamp": ["#24262a", "#3b3e43", "#55595f", "#73787e", "#949a9f", "#c4c8cd", "#dcdfe2", "#f0f1f3"] }
+    },
+    "typographyMeta": {
+      "display-cells-xl": { "displayName": "Display, cells xl", "purpose": "Opening headline and closing line, one letter per flap cell; only the opening headline cascades." },
+      "display-cells-lg": { "displayName": "Display, cells lg", "purpose": "Intermediate cell step between xl and md." },
+      "headline-cells-md": { "displayName": "Headline, cells md", "purpose": "Every panel heading, in per-letter flap cells." },
+      "title-row": { "displayName": "Row key", "purpose": "Left column of every board row; amber or red only when the row carries that status." },
+      "title-flap": { "displayName": "Flap strip", "purpose": "Status values and identity strips." },
+      "body": { "displayName": "Body", "purpose": "Board notes, max 62ch, white on black, tabular numerals." },
+      "body-detail": { "displayName": "Body detail", "purpose": "Soft-white sentence line under a row key." },
+      "label-column": { "displayName": "Column header", "purpose": "Amber tracked caps over table columns and group labels." },
+      "label-tag": { "displayName": "Sample tag", "purpose": "CONTOH marker in a panel head bar." }
+    },
+    "shadows": [
+      { "name": "board-lift", "value": "0 18px 40px -18px rgb(0 0 0 / .8)", "purpose": "The single steel frame only; panels never carry their own shadow." },
+      { "name": "cell-foot", "value": "inset 0 -2px 0 rgb(0 0 0 / .6), 0 1px 0 rgb(255 255 255 / .04)", "purpose": "Per-letter flap cells." },
+      { "name": "lamp-outline", "value": "inset 0 0 0 1px var(--amber) | var(--red)", "purpose": "Amber and red status flaps and the HAPUS retention tile." }
+    ],
+    "motion": [
+      { "name": "flap-turn", "value": "flap .09s cubic-bezier(.2, .7, .2, 1); from scaleY(.15) translateY(-30%) brightness(1.6) to none", "purpose": "One flip of a cell or strip face." },
+      { "name": "cascade-stagger", "value": "40ms per cell, 85ms per flip, 3-6 random flips per cell", "purpose": "Single load-time headline cascade." },
+      { "name": "status-resolve", "value": "5 steps x 90ms per strip, 160ms per row, after headline settles", "purpose": "Opening-board status flaps resolve left to right." },
+      { "name": "reduced-motion", "value": "animation: none", "purpose": "prefers-reduced-motion shows the settled board instantly." }
+    ],
+    "breakpoints": [
+      { "name": "desktop", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Flap Cell Headline",
+      "kind": "custom",
+      "refersTo": "flap-cell",
+      "description": "Display words set one letter per two-tone flap cell with a hinge seam.",
+      "html": "<h2 class=\"ds-cells\"><span class=\"ds-word\"><span class=\"ds-cell\">B</span><span class=\"ds-cell\">A</span><span class=\"ds-cell\">L</span><span class=\"ds-cell\">I</span><span class=\"ds-cell\">K</span></span><span class=\"ds-word\"><span class=\"ds-cell\">K</span><span class=\"ds-cell\">E</span></span></h2>",
+      "css": ".ds-cells { --cw: 44px; margin: 0; display: flex; flex-wrap: wrap; column-gap: calc(var(--cw) * .45); row-gap: 6px; } .ds-word { display: flex; gap: 3px; } .ds-cell { position: relative; display: grid; place-items: center; width: var(--cw); height: calc(var(--cw) * 1.4); background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); border-radius: 3px; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: calc(var(--cw) * 1.08); line-height: 1; color: #f2f2f2; overflow: hidden; box-shadow: inset 0 -2px 0 rgb(0 0 0 / .6), 0 1px 0 rgb(255 255 255 / .04); } .ds-cell::after { content: ''; position: absolute; inset: calc(50% - 1px) 0 auto; height: 2px; background: #000; box-shadow: 0 1px 0 rgb(255 255 255 / .05); }"
+    },
+    {
+      "name": "Status Flap",
+      "kind": "chip",
+      "refersTo": "flap-strip",
+      "description": "Status value strip: white default, amber attention, red late/objection, dim finished.",
+      "html": "<span class=\"ds-flap\">DICATAT</span> <span class=\"ds-flap ds-flap--amber\">YA</span> <span class=\"ds-flap ds-flap--red\">LEWAT</span> <span class=\"ds-flap ds-flap--dim\">SELESAI</span>",
+      "css": ".ds-flap { display: inline-flex; align-items: center; min-height: 34px; padding: 4px 10px; position: relative; background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); border-radius: 2px; color: #f2f2f2; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 1.0625rem; letter-spacing: .1em; line-height: 1.15; white-space: nowrap; } .ds-flap::after { content: ''; position: absolute; inset: calc(50% - .5px) 0 auto; height: 1px; background: #000; } .ds-flap--amber { color: #ffb400; box-shadow: inset 0 0 0 1px #ffb400; } .ds-flap--red { color: #ff5a4a; box-shadow: inset 0 0 0 1px #ff5a4a; } .ds-flap--dim { color: #c4c8cd; }"
+    },
+    {
+      "name": "Board Rows",
+      "kind": "custom",
+      "refersTo": "board-row-cell",
+      "description": "Ruled rows with amber column headers and a fixed-width right-aligned status column.",
+      "html": "<table class=\"ds-rows\" style=\"--sw: 8.5em\"><thead><tr><th>Apa</th><th class=\"ds-r\">Status</th></tr></thead><tbody><tr><td class=\"ds-k\">Pesan mentah</td><td class=\"ds-s\"><span class=\"ds-st\">HAPUS 7 HARI</span></td></tr><tr class=\"ds-amber\"><td class=\"ds-k\">Isi ke model AI</td><td class=\"ds-s\"><span class=\"ds-st ds-st--amber\">YA</span></td></tr><tr class=\"ds-red\"><td class=\"ds-k\">Keberatan</td><td class=\"ds-s\"><span class=\"ds-st ds-st--red\">ADMIN /NONAKTIFKAN</span></td></tr></tbody></table>",
+      "css": ".ds-rows { width: 100%; border-collapse: separate; border-spacing: 0 4px; background: #111214; color: #f2f2f2; } .ds-rows th { padding: 0 10px 4px; text-align: left; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 500; font-size: .8125rem; letter-spacing: .16em; color: #ffb400; text-transform: uppercase; } .ds-rows th.ds-r { text-align: right; } .ds-rows td { padding: 9px 10px; vertical-align: middle; background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); } .ds-k { font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 1.0625rem; letter-spacing: .08em; text-transform: uppercase; line-height: 1.2; } .ds-rows td.ds-s { width: var(--sw); text-align: right; background: transparent; padding-right: 0; } .ds-st { display: inline-flex; justify-content: center; align-items: center; width: var(--sw); min-height: 34px; padding: 4px 10px; background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); border-radius: 2px; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 1.0625rem; letter-spacing: .1em; } .ds-st--amber { color: #ffb400; box-shadow: inset 0 0 0 1px #ffb400; } .ds-st--red { color: #ff5a4a; box-shadow: inset 0 0 0 1px #ff5a4a; } .ds-amber .ds-k { color: #ffb400; } .ds-red .ds-k { color: #ff5a4a; }"
+    },
+    {
+      "name": "Steel Frame with Panels",
+      "kind": "card",
+      "refersTo": "frame",
+      "description": "One continuous steel frame; panels separated by 6px of exposed steel.",
+      "html": "<div class=\"ds-frame\"><section class=\"ds-board\"><p>Panel satu</p></section><section class=\"ds-board\"><p>Panel dua</p></section></div>",
+      "css": ".ds-frame { display: grid; gap: 6px; padding: 6px; background: #8e949c; box-shadow: 0 18px 40px -18px rgb(0 0 0 / .8); } .ds-board { background: #111214; color: #c4c8cd; padding: clamp(12px, 3vw, 28px); display: grid; gap: 18px; font-family: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif; font-size: 1.0625rem; line-height: 1.45; } .ds-board p { margin: 0; max-width: 62ch; }"
+    },
+    {
+      "name": "Panel Head Bar with Sample Tag",
+      "kind": "nav",
+      "refersTo": "tag-sample",
+      "description": "Heading left, CONTOH tag or soft meta right, 1px rule below.",
+      "html": "<div class=\"ds-head\"><span class=\"ds-title\">Isi satu ringkasan</span><span class=\"ds-tag\">Contoh</span></div>",
+      "css": ".ds-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 0 0 10px; border-bottom: 1px solid #2c2f33; background: #111214; } .ds-title { font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(1.25rem, 3.4vw, 2rem); letter-spacing: .08em; text-transform: uppercase; color: #f2f2f2; } .ds-tag { display: inline-block; padding: 2px 8px; border: 1px solid currentColor; color: #ffb400; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: .875rem; letter-spacing: .14em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Inline Link",
+      "kind": "button",
+      "refersTo": "link",
+      "description": "White text with a 2px amber underline; amber on hover; amber focus ring.",
+      "html": "<a class=\"ds-link\" href=\"#\">Baca aturan lengkap</a>",
+      "css": ".ds-link { color: #f2f2f2; font-family: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif; font-size: 1.0625rem; text-decoration: underline; text-decoration-color: #ffb400; text-decoration-thickness: 2px; text-underline-offset: .2em; } .ds-link:hover { color: #ffb400; } .ds-link:focus-visible { outline: 2px solid #ffb400; outline-offset: 3px; }"
+    },
+    {
+      "name": "Retention Strip",
+      "kind": "custom",
+      "refersTo": "retention-strip",
+      "description": "Day tiles on flap black; the terminal deletion tile spans two columns in red.",
+      "html": "<div class=\"ds-days\"><span>H1</span><span>H2</span><span>H3</span><span>H4</span><span>H5</span><span>H6</span><span>H7</span><span>HAPUS</span></div>",
+      "css": ".ds-days { display: grid; grid-template-columns: repeat(9, 1fr); gap: 3px; } .ds-days span { display: grid; place-items: center; min-height: 44px; background: linear-gradient(180deg, #1a1a1a 0 50%, #0e0e0e 50% 100%); color: #f2f2f2; font-family: 'Antonio', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: .08em; } .ds-days span:last-child { grid-column: span 2; color: #ff5a4a; box-shadow: inset 0 0 0 1px #ff5a4a; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Concourse Board",
+    "overview": "The system is a split-flap departure board, mounted for one WhatsApp group. Every surface is a steel-framed board; every rule, sample task, stored datum, and command is a ruled row with a fixed status column; every display word is set letter by letter in flap cells. The board refuses the category default of headline, phone mockup, and feature cards: rows and columns are the whole composition.\n\nDensity is high and legible, the way a concourse board is: condensed caps, tabular numerals, tight row spacing (4px), and a status column that holds one fixed width per table so the lamps line up. The palette is mechanical (matte flap-black, brushed steel, painted white) with two lamp colors. Depth comes from the hardware itself: the flap's two-tone halves, the hinge seam, the steel frame showing through the gaps between panels.\n\nMotion is the board's own: one load-time cascade where the headline cells flip through random glyphs and settle, then the status flaps resolve row by row. Reduced motion shows the final board instantly.",
+    "keyCharacteristics": [
+      "One continuous steel frame; panels separated by 6px of exposed steel, never by cards or shadows between panels.",
+      "Two-tone flap black (top #1a1a1a / bottom #0e0e0e) with a black center seam on every cell, strip, row, and day tile.",
+      "Display words only in per-letter flap cells (xl / lg / md).",
+      "Amber and red are lamps, not decoration.",
+      "Square, unrounded geometry except the flap hardware (2–3px)."
+    ],
+    "rules": [
+      { "name": "The Lamp Rule", "body": "Red marks only late, stopped, deleted, or objection. Amber marks only what needs the reader's attention, plus the board's header paint and interaction states. Neither ever fills a panel or a background.", "section": "colors" },
+      { "name": "The No Third Lamp Rule", "body": "There is no green, blue, or brand accent. A state that is fine is painted white; a state that is finished or absent is soft white.", "section": "colors" },
+      { "name": "The Cell Rule", "body": "Every display word is set in per-letter flap cells, uppercase, with real text exposed to screen readers. No display headline is ever set as free type.", "section": "typography" },
+      { "name": "The Condensed Pair Rule", "body": "Antonio for anything painted on the board, Barlow Semi Condensed for anything a person reads as a sentence. No third family.", "section": "typography" },
+      { "name": "The One Frame Rule", "body": "There is one frame. Panels never get their own shadow, border, or radius; they are separated only by exposed steel.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do put every new section on the same steel frame as another panel, separated by the 6px steel gap.",
+      "Do express content as board rows with a fixed-width, right-aligned status column per table.",
+      "Do set every display word in per-letter flap cells (xl for open/close, md for panel headings).",
+      "Do reserve red for late, stopped, deleted, or objection, and amber for attention and header paint.",
+      "Do label invented example content with the amber CONTOH tag in the head bar.",
+      "Do keep the cascade to a single load-time run and show the settled board under reduced motion."
+    ],
+    "donts": [
+      "Don't add rounded cards, per-panel shadows, or borders between panels; the steel gap is the divider.",
+      "Don't introduce a third lamp color or a brand accent fill.",
+      "Don't set a display headline as free type outside the flap cells.",
+      "Don't place a small label above a heading; panel context goes in the head bar beside the heading.",
+      "Don't add airport or travel props beyond the board itself (planes, gates, tickets).",
+      "Don't animate on scroll or loop the flip; the board flips once."
+    ]
+  }
+}

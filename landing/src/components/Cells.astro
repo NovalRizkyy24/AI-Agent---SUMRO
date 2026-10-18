@@ -1,0 +1,22 @@
+---
+// Teks papan yang dipecah per huruf ke sel flap. Pembaca layar membaca teks utuh.
+interface Props {
+  text: string;
+  as?: 'h1' | 'h2' | 'p';
+  size?: 'xl' | 'lg' | 'md';
+  tone?: 'white' | 'amber';
+  cascade?: boolean;
+}
+const { text, as: Tag = 'p', size = 'lg', tone = 'white', cascade = false } = Astro.props;
+const words = text.toUpperCase().split(' ');
+---
+<Tag class:list={['cells', `cells--${size}`, `cells--${tone}`]} data-cascade={cascade ? '' : undefined}>
+  <span class="sr-only">{text}</span>
+  <span class="cells__run" aria-hidden="true">
+    {words.map((word) => (
+      <span class="cells__word">
+        {[...word].map((ch) => <span class="cell" data-char={ch}>{ch}</span>)}
+      </span>
+    ))}
+  </span>
+</Tag>

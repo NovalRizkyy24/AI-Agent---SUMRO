@@ -1,0 +1,23 @@
+# Rahasia dan data bot
+.env
+.env.*
+.hermes/
+
+# Node / Astro
+node_modules/
+dist/
+.astro/
+
+# Alat lokal (skill, pengaturan editor)
+.claude/
+
+# Impeccable: file lokal, cache, dan hasil kerja sementara
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/questions/
+.impeccable/review/
+.impeccable/mocks/
+
+# OS
+.DS_Store
+Thumbs.db
