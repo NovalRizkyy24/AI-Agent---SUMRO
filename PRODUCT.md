@@ -11,7 +11,7 @@ web
 ## Stack
 
 Delegated: diserahkan ke rekomendasi Claude.
-- Hosting web: **Vercel** (dipilih pemilik 2026-10-18), Root Directory `landing`.
+- Hosting web: **Vercel** (dipilih pemilik 2026-10-18), Root Directory `landing`, alamat produksi https://ai-agent-sumro.vercel.app.
 - Landing page dan halaman panduan: **Astro** (output statis). Kontennya kebanyakan teks dan jarang berubah, bisa di-host gratis, dan halaman docs bisa ditulis dalam Markdown.
 - Dashboard admin: **belum diputuskan**. Dashboard butuh backend yang membaca database bot (SQLite di server yang sama dengan Hermes), jadi stack-nya dipilih saat dashboard mulai dibangun. Kandidatnya Astro mode SSR atau backend Python yang sebahasa dengan skrip/skill penghubung.
 
