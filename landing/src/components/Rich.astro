@@ -1,0 +1,7 @@
+---
+// Teks biasa dengan perintah (/ringkas, /nonaktifkan, ...) tampil sebagai kode.
+interface Props { text: string }
+const { text } = Astro.props;
+const parts = text.split(/(\/[a-z]+(?: 3 jam| hari ini| kata| 21:00)?)/);
+---
+{parts.map((part, i) => (i % 2 === 1 ? <code>{part}</code> : part))}

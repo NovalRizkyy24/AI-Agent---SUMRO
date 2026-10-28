@@ -1,0 +1,46 @@
+---
+import { sample } from '../data/content';
+---
+<section class="section container split" id="contoh" aria-labelledby="contoh-judul">
+  <article class="sample" aria-label="Contoh ringkasan" data-reveal>
+    <div class="sample__head">
+      <div>
+        <p class="sample__title">Ringkasan grup</p>
+        <p class="sample__meta">Hari ini, sampai 21.00</p>
+      </div>
+      <span class="tag">Contoh</span>
+    </div>
+
+    <div>
+      <h3 class="sample__sub">Keputusan</h3>
+      <ul class="sample__list">{sample.decisions.map((d) => <li>{d}</li>)}</ul>
+    </div>
+
+    <div>
+      <h3 class="sample__sub">Tugas</h3>
+      <ul class="sample__list tasks">
+        {sample.tasks.map((t) => (
+          <li>
+            <span class="task__what">{t.what}</span>
+            <span class="task__meta">{t.who} · {t.when ?? 'tanpa tenggat'}</span>
+            <span class:list={['task__status', t.tone && `task__status--${t.tone}`]}>{t.s}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="sample__sub">Belum terjawab</h3>
+      <ul class="sample__list">{sample.open.map((q) => <li>{q}</li>)}</ul>
+    </div>
+  </article>
+
+  <div class="split__text" data-reveal>
+    <p class="eyebrow">Isi satu ringkasan</p>
+    <h2 class="h2" id="contoh-judul">Satu kali baca, langsung menyusul</h2>
+    <p class="body">
+      Ketik <code>/ringkas</code> dan bot membalas di grup. Bagian yang kosong dilewati, tidak dikarang. Tugas tanpa tenggat ditulis tanpa tenggat.
+    </p>
+    <a class="btn btn--solid" href="#perintah">Lihat perintah</a>
+  </div>
+</section>

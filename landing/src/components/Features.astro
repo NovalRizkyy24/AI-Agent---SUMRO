@@ -1,0 +1,20 @@
+---
+import { features } from '../data/content';
+import DotIcon from './DotIcon.astro';
+import Rich from './Rich.astro';
+---
+<section class="section container" id="fitur" aria-labelledby="fitur-judul">
+  <header class="section__head" data-reveal>
+    <p class="eyebrow">Agen yang bekerja di grup</p>
+    <h2 class="h2" id="fitur-judul">Enam hal yang dikerjakan SUMROM Agent untuk grupmu</h2>
+  </header>
+  <ul class="cards" data-reveal>
+    {features.map((f) => (
+      <li class="card">
+        <div class="card__art"><DotIcon name={f.icon} /></div>
+        <h3 class="card__title">{f.title}</h3>
+        <p class="card__text"><Rich text={f.text} /></p>
+      </li>
+    ))}
+  </ul>
+</section>

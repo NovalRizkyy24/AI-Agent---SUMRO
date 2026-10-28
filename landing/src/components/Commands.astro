@@ -1,0 +1,25 @@
+---
+import { adminCommands, commands } from '../data/content';
+
+const items = [
+  ...commands.map((c) => ({ ...c, admin: false })),
+  ...adminCommands.map((c) => ({ ...c, admin: true })),
+];
+---
+<section class="section container" id="perintah" aria-labelledby="perintah-judul">
+  <header class="section__head" data-reveal>
+    <p class="eyebrow">Perintah</p>
+    <h2 class="h2" id="perintah-judul">Ketik langsung di grup, bot membalas di situ</h2>
+  </header>
+  <dl class="cmds" data-reveal>
+    {items.map((c) => (
+      <div class="cmd">
+        <dt>
+          <code>{c.c}</code>
+          {c.admin && <span class="tag">Admin</span>}
+        </dt>
+        <dd>{c.v}</dd>
+      </div>
+    ))}
+  </dl>
+</section>

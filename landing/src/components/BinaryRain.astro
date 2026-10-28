@@ -1,0 +1,63 @@
+---
+// Latar hujan angka 0/1 seperti di template. Berhenti saat tidak terlihat;
+// tanpa animasi kalau pengguna memilih "kurangi gerakan".
+---
+<canvas class="rain" aria-hidden="true" data-rain></canvas>
+
+<script>
+  const STEP = 14; // jarak kolom dan baris, px
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  for (const canvas of document.querySelectorAll<HTMLCanvasElement>('[data-rain]')) {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) continue;
+    let cols: number[] = [];
+    let rows = 0;
+    let visible = false;
+    let last = 0;
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const { width, height } = canvas.getBoundingClientRect();
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.font = '11px "Geist Mono Variable", monospace';
+      rows = Math.ceil(height / STEP);
+      cols = Array.from({ length: Math.ceil(width / STEP) }, () => Math.random() * rows);
+      draw();
+    };
+
+    const draw = () => {
+      const { width, height } = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, width, height);
+      cols.forEach((head, x) => {
+        for (let y = 0; y < rows; y++) {
+          const age = (head - y + rows) % rows; // 0 = kepala tetesan
+          const a = age < 12 ? 0.75 - age * 0.06 : Math.random() < 0.04 ? 0.12 : 0;
+          if (a <= 0) continue;
+          ctx.fillStyle = `rgba(255,255,255,${a})`;
+          ctx.fillText(Math.random() < 0.5 ? '0' : '1', x * STEP, y * STEP + 11);
+        }
+      });
+    };
+
+    const tick = (now: number) => {
+      if (!visible) return;
+      if (now - last > 70) {
+        last = now;
+        cols = cols.map((h) => (h + 1) % rows);
+        draw();
+      }
+      requestAnimationFrame(tick);
+    };
+
+    new ResizeObserver(resize).observe(canvas);
+    if (!reduce) {
+      new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) requestAnimationFrame(tick);
+      }).observe(canvas);
+    }
+  }
+</script>

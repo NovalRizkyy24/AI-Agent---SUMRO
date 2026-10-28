@@ -1,0 +1,47 @@
+---
+import { notRecorded, recorded, risks } from '../data/content';
+import Rich from './Rich.astro';
+
+const items = [
+  ...recorded.map((r) => ({ ...r, on: true })),
+  ...notRecorded.map((r) => ({ ...r, on: false })),
+];
+---
+<section class="section container" id="privasi" aria-labelledby="privasi-judul">
+  <header class="section__head" data-reveal>
+    <p class="eyebrow">Privasi</p>
+    <h2 class="h2" id="privasi-judul">Yang dicatat, dan yang tidak</h2>
+  </header>
+  <ul class="perks" data-reveal>
+    {items.map((r) => (
+      <li class:list={['perk', { 'perk--off': !r.on }]}>
+        <svg class="perk__icon" viewBox="0 0 24 24" aria-hidden="true">
+          {r.on ? <path d="M5 12.5l4.5 4.5L19 7.5" /> : <path d="M6 6l12 12M18 6L6 18" />}
+        </svg>
+        <p class="perk__state">{r.on ? 'Dicatat' : 'Tidak dicatat'}</p>
+        <h3 class="perk__title">{r.k}</h3>
+        <p class="perk__text"><Rich text={r.v} /></p>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<section class="section container" id="risiko" aria-labelledby="risiko-judul">
+  <header class="section__head" data-reveal>
+    <p class="eyebrow">Risikonya</p>
+    <h2 class="h2" id="risiko-judul">Empat hal yang perlu kamu tahu</h2>
+  </header>
+  <ol class="risks" data-reveal>
+    {risks.map((r, i) => (
+      <li>
+        <span class="risks__num">{String(i + 1).padStart(2, '0')}</span>
+        <h3 class="risks__title">{r.k}</h3>
+        <p class="risks__text">{r.v}</p>
+      </li>
+    ))}
+  </ol>
+  <div class="objection" data-reveal>
+    <p class="objection__title">Satu orang keberatan sudah cukup.</p>
+    <p>Bilang ke admin. Admin wajib mengetik <code>/nonaktifkan</code>, dan bot berhenti mencatat grup ini.</p>
+  </div>
+</section>

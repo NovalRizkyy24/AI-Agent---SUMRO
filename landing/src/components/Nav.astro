@@ -1,0 +1,12 @@
+---
+import { nav } from '../data/content';
+---
+<header class="nav">
+  <nav class="nav__inner" aria-label="Navigasi utama">
+    <ul class="nav__links">
+      {nav.map((n) => <li><a href={`/${n.href}`}>{n.label}</a></li>)}
+    </ul>
+    <a class="logo" href="/" aria-label="SUMROM Agent, ke atas">SUMROM<span>AGENT</span></a>
+    <a class="btn btn--solid btn--sm nav__cta" href="/#perintah">Lihat perintah</a>
+  </nav>
+</header>

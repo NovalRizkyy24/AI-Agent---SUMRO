@@ -1,0 +1,21 @@
+---
+import { faq } from '../data/content';
+import Rich from './Rich.astro';
+---
+<section class="section container" id="faq" aria-labelledby="faq-judul">
+  <header class="section__head" data-reveal>
+    <p class="eyebrow">Pertanyaan yang sering muncul</p>
+    <h2 class="h2" id="faq-judul">Yang perlu kamu tahu sebelum mengetik /ringkas</h2>
+  </header>
+  <div class="faq" data-reveal>
+    {faq.map((f) => (
+      <details class="faq__item">
+        <summary>
+          {f.q}
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </summary>
+        <p><Rich text={f.a} /></p>
+      </details>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import { facts, terminal } from '../data/content';
+import Rich from './Rich.astro';
+---
+<section class="hero container" aria-labelledby="judul">
+  <p class="eyebrow">SUMROM Agent · Bot WhatsApp</p>
+  <h1 class="h1" id="judul">Grup ini dirangkum <span class="haze"><span>oleh</span> <span>bot.</span></span></h1>
+  <p class="lede">Admin grup ini memasang SUMROM Agent. Ini yang dicatat, risikonya, dan cara menolaknya.</p>
+
+  <div class="crt" aria-hidden="true">
+    <div class="crt__body">
+      <div class="crt__screen">
+        <ol class="crt__log">
+          {terminal.map((line, i) => (
+            <li class:list={{ "is-cmd": line.cmd }} style={`--i:${i}`}>{line.t}</li>
+          ))}
+          <li class="is-cmd" style={`--i:${terminal.length}`}>&gt; /tugas <span class="caret"></span></li>
+        </ol>
+      </div>
+      <div class="crt__base"><span></span><span class="crt__slot"></span><span></span></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a class="btn btn--solid" href="#perintah">Lihat perintah</a>
+    <a class="btn btn--ghost" href="#privasi">Privasi &amp; risiko</a>
+  </div>
+</section>
+
+<section class="facts container" aria-label="Sebelum mulai">
+  <p class="eyebrow">Sebelum mulai, tiga hal ini</p>
+  <ul class="facts__list">
+    {facts.map((f) => (
+      <li>
+        <p class="facts__label">{f.label}</p>
+        <p class="facts__text"><Rich text={f.text} /></p>
+      </li>
+    ))}
+  </ul>
+</section>

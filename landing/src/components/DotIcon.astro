@@ -1,0 +1,19 @@
+---
+// Ikon garis bertitik, meniru ilustrasi stipple di template.
+import type { IconName } from '../data/content';
+
+interface Props { name: IconName }
+const { name } = Astro.props;
+
+const paths: Record<IconName, string[]> = {
+  summary: ['M18 8h22l8 8v40H18z', 'M40 8v8h8', 'M24 26h18', 'M24 33h18', 'M24 40h12', 'M24 47h15'],
+  tasks: ['M10 12h44v40H10z', 'M17 24l4 4 7-8', 'M33 24h14', 'M17 39l4 4 7-8', 'M33 39h14'],
+  range: ['M8 18h48v34H8z', 'M8 28h48', 'M20 10v14', 'M44 10v14', 'M18 38h10', 'M36 38h10', 'M18 45h28'],
+  search: ['M28 10a16 16 0 1 0 0 32a16 16 0 1 0 0-32', 'M40 38l14 14', 'M20 26h16', 'M20 20h10'],
+  clock: ['M32 8a24 24 0 1 0 0 48a24 24 0 1 0 0-48', 'M32 18v14l10 7', 'M32 8v4', 'M56 32h-4', 'M32 56v-4', 'M8 32h4'],
+  chat: ['M10 12h44v30H28l-12 10V42h-6z', 'M20 24h24', 'M20 31h16'],
+};
+---
+<svg class="dot-icon" viewBox="0 0 64 64" aria-hidden="true">
+  {paths[name].map((d) => <path d={d} />)}
+</svg>

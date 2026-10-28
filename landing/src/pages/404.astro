@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import BinaryRain from '../components/BinaryRain.astro';
+---
+<Base title="SUMROM Agent · Halaman tidak ditemukan" description="Halaman ini tidak ada." noindex>
+  <Nav />
+  <main class="cta cta--page">
+    <BinaryRain />
+    <div class="cta__inner container">
+      <p class="eyebrow">Error 404</p>
+      <h1 class="h1 cta__title">Halaman ini tidak ada.</h1>
+      <p class="lede">Mungkin link-nya salah ketik. Info lengkap soal bot ada di beranda.</p>
+      <div class="actions">
+        <a class="btn btn--solid" href="/">Kembali ke beranda</a>
+      </div>
+    </div>
+  </main>
+</Base>

@@ -1,0 +1,23 @@
+---
+import { BOT_NUMBER, nav } from '../data/content';
+---
+<footer class="foot">
+  <div class="container foot__grid">
+    <div class="foot__brand">
+      <a class="logo" href="/">SUMROM<span>AGENT</span></a>
+      <p>Bot WhatsApp yang merangkum grupmu jadi keputusan, tugas, dan pertanyaan terbuka.</p>
+    </div>
+    <div>
+      <p class="foot__head">Navigasi</p>
+      <ul>{nav.map((n) => <li><a href={`/${n.href}`}>{n.label}</a></li>)}</ul>
+    </div>
+    <div>
+      <p class="foot__head">Bot</p>
+      <ul>
+        <li>SUMROM Agent</li>
+        <li>{BOT_NUMBER}</li>
+      </ul>
+    </div>
+    <p class="foot__legal">©2026 SUMROM Agent · Halaman ini dibagikan oleh admin grup.</p>
+  </div>
+</footer>
