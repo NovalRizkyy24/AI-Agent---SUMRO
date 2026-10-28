@@ -179,6 +179,18 @@ class PluginTest(unittest.IsolatedAsyncioTestCase):
         await self.say("/shrug wkwk", message_id="s")
         self.assertEqual(len(self.plugin.store.unsummarized(GROUP)), 1)
 
+    async def test_hidden_jam_benguk(self):
+        result = await self.say("/jam benguk")
+        self.assertEqual(result["reason"], "sumrom-jam benguk")
+        self.assertIn("Jam benguk kamu:", self.last())
+        self.assertTrue(any(line in self.last() for lines in fmt.JAM_BENGUK.values() for line in lines))
+        await self.say("/bantuan")
+        self.assertNotIn("benguk", self.last())
+        await self.say("/aktifkan", user=ADMIN)
+        await self.say("/jam", message_id="j1")
+        await self.say("/jam lain", message_id="j2")
+        self.assertEqual(len(self.plugin.store.unsummarized(GROUP)), 2)
+
     async def test_dm_is_ignored_except_help(self):
         result = await self.say("halo bot", chat_type="dm")
         self.assertEqual(result["action"], "skip")

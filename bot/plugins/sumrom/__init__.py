@@ -37,6 +37,8 @@ log = logging.getLogger("sumrom")
 
 ADMIN_COMMANDS = {"aktifkan", "nonaktifkan", "jadwal", "gaya"}
 MEMBER_COMMANDS = {"ringkas", "tugas", "cari", "bantuan", "idsaya"}
+# Perintah iseng yang sengaja tidak dicantumkan di /bantuan.
+HIDDEN_COMMANDS = {"jam benguk"}
 SEARCH_LIMIT = 5
 LONG_RUN_NOTICE = 150  # kirim "tunggu sebentar" kalau pesan sebanyak ini
 
@@ -185,6 +187,9 @@ class Sumrom:
             return None, ""
         head, _, rest = text[1:].partition(" ")
         name = head.split("@", 1)[0].lower()
+        hidden = " ".join([name, *rest.lower().split()])
+        if hidden in HIDDEN_COMMANDS:
+            return hidden, ""
         if name in ADMIN_COMMANDS or name in MEMBER_COMMANDS:
             return name, rest.strip()
         return None, ""  # "/" lain diperlakukan sebagai pesan biasa
@@ -202,6 +207,9 @@ class Sumrom:
             return
         if command == "bantuan":
             await self.send(source, fmt.help_message())
+            return
+        if command == "jam benguk":
+            await self.send(source, fmt.jam_benguk())
             return
 
         if command in ADMIN_COMMANDS and not self._is_admin(source):

@@ -13,6 +13,7 @@ Hermes yang mengonversi.
 from __future__ import annotations
 
 import os
+import random
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -255,6 +256,42 @@ def admin_only() -> str:
 
 def whoami(user_id: str) -> str:
     return f"ID WhatsApp kamu di grup ini: {user_id}\nAdmin bot perlu memasukkan ID ini ke SUMROM_ADMINS."
+
+
+# ---------- /jam benguk (tersembunyi, sengaja tidak ada di /bantuan) ----------
+
+JAM_BENGUK = {
+    "hina": [
+        "Jam segitu kamu bengong lagi. Konsisten sih, sayang konsistennya di hal nggak guna.",
+        "Itu jam produktifmu. Satu-satunya, jangan sampai kelewat.",
+        "Jam segitu otakmu biasanya loading. Sabar ya, sinyalnya memang lemah dari lahir.",
+        "Tugas numpuk, kamu malah nanya jam benguk. Prioritasmu perlu diservis.",
+        "Jadwal rebahan resmi. Bedanya sama jam lain cuma ada di kertas.",
+        "Jam segitu kamu baru sadar deadline. Telat, seperti biasa.",
+    ],
+    "puji": [
+        "Jam segitu kamu lagi cakep-cakepnya. Sayang nggak ada yang lihat.",
+        "Itu jam kamu paling encer. Pakai buat kerja, jangan buat scroll.",
+        "Jam segitu ide brilianmu muncul. Catat, jangan cuma dipikirin.",
+        "Jam segitu kamu jadi orang paling waras di grup ini. Bukan prestasi besar, tapi tetap selamat.",
+        "Jam segitu aura kamu keluar. Jangan disia-siain buat ngelamun.",
+    ],
+    "motivasi": [
+        "Bangun. Mimpi doang nggak bayar cicilan.",
+        "Jam segitu waktunya mulai. Bukan besok, bukan habis makan. Jam segitu.",
+        "Kamu nggak capek, kamu cuma belum mulai. Gas.",
+        "Satu langkah kecil di jam segitu lebih berguna dari seribu rencana di kepala.",
+        "Benguk boleh, menyerah jangan. Habis itu kerjain.",
+        "Orang lain lagi ngejar target. Kamu lagi ngejar apa? Mulai jam segitu.",
+    ],
+}
+
+
+def jam_benguk(rng: random.Random | None = None) -> str:
+    rng = rng or random
+    jam = f"{rng.randrange(24):02d}.{rng.randrange(60):02d}"
+    kalimat = rng.choice(JAM_BENGUK[rng.choice(list(JAM_BENGUK))])
+    return f"{b(f'Jam benguk kamu: {jam} WIB')}\n{kalimat}"
 
 
 # ---------- Pemecah pesan panjang ----------
